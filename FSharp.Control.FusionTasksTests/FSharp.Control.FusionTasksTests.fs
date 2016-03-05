@@ -1,9 +1,5 @@
 ﻿module FSharp.Control.FusionTasksTests
 
-// https://github.com/fsharp/FsCheck/blob/master/Docs/Documentation.md
-// https://github.com/fsharp/FsUnit
-// https://code.google.com/p/unquote/
-
 open System
 open System.IO
 open System.Diagnostics
@@ -39,6 +35,10 @@ let AsyncBuilderAsAsyncTTest() =
     }
   let results = computation |> Async.RunSynchronously
   results |> should equal data
+
+// https://github.com/fsharp/FsCheck/blob/master/Docs/Documentation.md
+// https://github.com/fsharp/FsUnit
+// https://code.google.com/p/unquote/
 
 // all tests are failing
 

@@ -22,40 +22,44 @@ namespace FSharp.Control
 open System
 open System.Threading
 open System.Threading.Tasks
+open Microsoft.Runtime.CompilerServices
 
 [<AutoOpen>]
 module AsyncExtensions =
 
-  let private asTask (async: Async<'T>, token: CancellationToken option) =
+  let private asTask(async: Async<'T>, token: CancellationToken option) =
     let tcs = TaskCompletionSource<'T>()
-    Async.StartWithContinuations (
+    Async.StartWithContinuations(
       async,
       tcs.SetResult,
       tcs.SetException,
-      (fun ce -> tcs.SetException ce),
+      (fun ce -> tcs.SetException(ce)),
       (match token with
         | Some t -> t
         | None -> Async.DefaultCancellationToken))
     tcs.Task
 
-  type Async with
-    static member AsTask (task: Async<'T>, ?token: CancellationToken) = asTask (task, token)
-    static member AsTask (task: Async<unit>, ?token: CancellationToken) = asTask (task, token) :> Task
-
-  let private asAsync (task: Task) =
+  let private asAsync(task: Task) =
     let tcs = TaskCompletionSource<unit>()
-    task.
-      ContinueWith(new Func<Task, unit>(fun t -> tcs.SetResult(())), TaskContinuationOptions.OnlyOnRanToCompletion).
-      ContinueWith(new Action<Task>(fun t -> tcs.SetException(t.Exception)), TaskContinuationOptions.OnlyOnFaulted).
-      ContinueWith(new Action<Task>(fun t -> tcs.SetCanceled()), TaskContinuationOptions.OnlyOnCanceled)
+    task.ContinueWith(
+        new Func<Task, unit>(fun _ -> tcs.SetResult(())),
+        TaskContinuationOptions.OnlyOnRanToCompletion).
+      ContinueWith(
+        new Action<Task>(fun t -> tcs.SetException(t.Exception)),
+        TaskContinuationOptions.OnlyOnFaulted).
+      ContinueWith(
+        new Action<Task>(fun _ -> tcs.SetCanceled()),
+        TaskContinuationOptions.OnlyOnCanceled)
       |> ignore
     tcs.Task |> Async.AwaitTask
 
   type Async with
-    static member AwaitTask (task: Task) = asAsync task
+    static member AsTask(task: Async<'T>, ?token: CancellationToken) = asTask(task, token)
+    static member AsTask(task: Async<unit>, ?token: CancellationToken) = asTask(task, token) :> Task
+    static member AwaitTask(task: Task) = asAsync(task)
 
   type AsyncBuilder with
-    member this.Bind (computation: Task<'T>, binder: 'T -> Async<'U>) =
-      this.Bind ((computation |> Async.AwaitTask), binder)
-    member this.Bind (computation: Task, binder: unit -> Async<'U>) =
-      this.Bind ((computation |> asAsync), binder)
+    member __.Source(computation: Task) =
+      computation |> asAsync
+    member this.Bind(computation: Task<'T>, binder: 'T -> Async<'U>) =
+      this.Bind(computation |> Async.AwaitTask, binder)

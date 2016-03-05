@@ -26,6 +26,8 @@ open System.Threading.Tasks
 open FSharp.Control
 
 [<Extension>]
+[<Sealed>]
+[<AbstractClass>]
 type TaskExtensions =
 
   [<Extension>]
