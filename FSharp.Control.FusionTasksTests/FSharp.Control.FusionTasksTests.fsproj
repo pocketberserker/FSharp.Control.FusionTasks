@@ -78,7 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NUnitRunner.fs" />
-    <Compile Include="FSharp.Control.FusionTasksTests.fs" />
+    <Compile Include="AsyncExtensionsTests.fs" />
     <None Include="packages.config" />
     <None Include="App.config" />
   </ItemGroup>

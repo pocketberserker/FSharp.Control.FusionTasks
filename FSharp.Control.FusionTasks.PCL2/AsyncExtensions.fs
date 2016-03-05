@@ -22,7 +22,6 @@ namespace FSharp.Control
 open System
 open System.Threading
 open System.Threading.Tasks
-open Microsoft.Runtime.CompilerServices
 
 [<AutoOpen>]
 module AsyncExtensions =
@@ -39,6 +38,7 @@ module AsyncExtensions =
         | None -> Async.DefaultCancellationToken))
     tcs.Task
 
+#if PCL2
   let private asAsync(task: Task) =
     let tcs = TaskCompletionSource<unit>()
     task.ContinueWith(
@@ -48,18 +48,19 @@ module AsyncExtensions =
         new Action<Task>(fun t -> tcs.SetException(t.Exception)),
         TaskContinuationOptions.OnlyOnFaulted).
       ContinueWith(
-        new Action<Task>(fun _ -> tcs.SetCanceled()),
+        new Action<Task>(fun t -> tcs.SetException(t.Exception)),
         TaskContinuationOptions.OnlyOnCanceled)
       |> ignore
     tcs.Task |> Async.AwaitTask
+#endif
 
   type Async with
     static member AsTask(task: Async<'T>, ?token: CancellationToken) = asTask(task, token)
     static member AsTask(task: Async<unit>, ?token: CancellationToken) = asTask(task, token) :> Task
+#if PCL2
     static member AwaitTask(task: Task) = asAsync(task)
+#endif
 
   type AsyncBuilder with
-    member __.Source(computation: Task) =
-      computation |> asAsync
-    member __.Source(computation: Task<'T>) =
-      computation |> Async.AwaitTask
+    member __.Source(computation: Task) = computation |> Async.AwaitTask
+    member __.Source(computation: Task<'T>) = computation |> Async.AwaitTask
