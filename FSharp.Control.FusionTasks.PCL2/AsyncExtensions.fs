@@ -61,5 +61,5 @@ module AsyncExtensions =
   type AsyncBuilder with
     member __.Source(computation: Task) =
       computation |> asAsync
-    member this.Bind(computation: Task<'T>, binder: 'T -> Async<'U>) =
-      this.Bind(computation |> Async.AwaitTask, binder)
+    member __.Source(computation: Task<'T>) =
+      computation |> Async.AwaitTask

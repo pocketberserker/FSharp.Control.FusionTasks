@@ -30,7 +30,9 @@ let AsyncBuilderAsAsyncTTest() =
   do r.NextBytes data
   let computation = async {
       use ms = new MemoryStream()
-      do! ms.WriteAsync(data, 0, data.Length)
+      do ms.Write(data, 0, data.Length)
+      do ms.Position <- 0L
+      let! length = ms.ReadAsync(data, 0, data.Length)
       return ms.ToArray()
     }
   let results = computation |> Async.RunSynchronously
