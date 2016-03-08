@@ -26,44 +26,53 @@ open System.Threading.Tasks
 [<AutoOpen>]
 module AsyncExtensions =
 
-  let private asTask(async: Async<'T>, token: CancellationToken option) =
+  let private asTask(async: Async<'T>, ct: CancellationToken option) =
     let tcs = TaskCompletionSource<'T>()
     Async.StartWithContinuations(
       async,
       tcs.SetResult,
       tcs.SetException,
       (fun ce -> tcs.SetException(ce)), // Derived from original OperationCancelledException
-      (match token with
-        | Some t -> t
+      (match ct with
+        | Some token -> token
         | None -> Async.DefaultCancellationToken))
     tcs.Task
 
-  let private asAsync(task: Task) =
+  let private (|IsFaulted|IsCanceled|IsCompleted|) (task: Task) =
+    if task.IsFaulted then IsFaulted task.Exception
+    else if task.IsCanceled then IsCanceled
+    else IsCompleted
+
+  let private asAsync(task: Task, ct: CancellationToken option) =
+    let token =
+      match ct with
+      | Some token -> token
+      | None -> Async.DefaultCancellationToken
     Async.FromContinuations(
-      fun (completed, caught, _) ->
+      fun (completed, caught, canceled) ->
         task.ContinueWith(
-            new Func<Task, unit>(fun _ -> completed(())),
-            TaskContinuationOptions.OnlyOnRanToCompletion).
-          ContinueWith(
-            new Action<Task>(fun task -> caught(task.Exception)),
-            TaskContinuationOptions.OnlyOnFaulted).
-          ContinueWith(
-            new Action<Task>(fun task -> caught(task.Exception)), // Derived from original OperationCancelledException
-            TaskContinuationOptions.OnlyOnCanceled)
+          new Action<Task>(fun _ ->
+            match task with  
+            | IsFaulted exn -> caught(exn)
+            | IsCanceled -> canceled(OperationCanceledException())
+            | IsCompleted -> completed(())),
+          token)
         |> ignore)
 
-  let private asAsyncT(task: Task<'T>) =
+  let private asAsyncT(task: Task<'T>, ct: CancellationToken option) =
+    let token =
+      match ct with
+      | Some token -> token
+      | None -> Async.DefaultCancellationToken
     Async.FromContinuations(
-      fun (completed, caught, _) ->
+      fun (completed, caught, canceled) ->
         task.ContinueWith(
-            new Func<Task<'T>, unit>(fun task -> completed(task.Result)),
-            TaskContinuationOptions.OnlyOnRanToCompletion).
-          ContinueWith(
-            new Action<Task>(fun task -> caught(task.Exception)),
-            TaskContinuationOptions.OnlyOnFaulted).
-          ContinueWith(
-            new Action<Task>(fun task -> caught(task.Exception)), // Derived from original OperationCancelledException
-            TaskContinuationOptions.OnlyOnCanceled)
+          new Action<Task>(fun _ ->
+            match task with  
+            | IsFaulted exn -> caught(exn)
+            | IsCanceled -> canceled(OperationCanceledException())
+            | IsCompleted -> completed(task.Result)),
+          token)
         |> ignore)
 
   type Async with
@@ -90,14 +99,14 @@ module AsyncExtensions =
     /// </summary>
     /// <param name="task">.NET Task</param>
     /// <returns>F# Async</returns>
-    static member AsAsync(task: Task) = asAsync(task)
+    static member AsAsync(task: Task, ?token: CancellationToken) = asAsync(task, token)
 
     /// <summary>
     /// Seamless conversion from .NET Task to F# Async.
     /// </summary>
     /// <param name="task">.NET Task</param>
     /// <returns>F# Async</returns>
-    static member AsAsync(task: Task<'T>) = asAsyncT(task)
+    static member AsAsync(task: Task<'T>, ?token: CancellationToken) = asAsyncT(task, token)
 
   type AsyncBuilder with
 
@@ -106,7 +115,7 @@ module AsyncExtensions =
     /// </summary>
     /// <param name="expr">.NET Task (expression result)</param>
     /// <returns>F# Async</returns>
-    member __.Source(expr: Task) = expr |> asAsync
+    member __.Source(expr: Task) = asAsync(expr, None)
 
     /// <summary>
     /// Seamless conversion from .NET Task to F# Async in Async workflow.
@@ -114,4 +123,4 @@ module AsyncExtensions =
     /// <typeparam name="'T">Computation result type</typeparam> 
     /// <param name="expr">.NET Task (expression result)</param>
     /// <returns>F# Async</returns>
-    member __.Source(expr: Task<'T>) = expr |> asAsyncT
+    member __.Source(expr: Task<'T>) = asAsync(expr, None)

@@ -5,7 +5,7 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasks.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{1B5F5358-3E99-41E1-B951-F9BB13BEAC9B}"
 	ProjectSection(SolutionItems) = preProject
-		.nuget\packages.config = .nuget\packages.config
+		.nuget\NuGet.Config = .nuget\NuGet.Config
 	EndProjectSection
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasksTests", "FSharp.Control.FusionTasksTests\FSharp.Control.FusionTasksTests.fsproj", "{C3406FB4-D9D8-4859-AF6C-FA3BB786CCF9}"

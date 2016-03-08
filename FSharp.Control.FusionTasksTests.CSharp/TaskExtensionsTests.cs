@@ -30,10 +30,16 @@ namespace FSharp.Control.FusionTasksTests
     public class TaskExtensionsTests
     {
         #region Task.AsAsync
+        private static async Task DelayAsync()
+        {
+            await Task.Delay(500);
+            Console.WriteLine("AAA");
+        }
+
         [TestMethod]
         public void TaskAsAsyncTest()
         {
-            var task = Task.Delay(500);
+            var task = DelayAsync();
             var asy = task.AsAsync();
 
             // MSTest not supported FSharpAsync based tests, so run synchronously here. 
