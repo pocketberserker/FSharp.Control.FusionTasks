@@ -3,8 +3,6 @@
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
-  </PropertyGroup>
-  <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <SchemaVersion>2.0</SchemaVersion>
@@ -15,7 +13,7 @@
     <RootNamespace>FSharp.Control.FusionTasksTests</RootNamespace>
     <AssemblyName>FSharp.Control.FusionTasksTests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <Name>FSharpTest</Name>
+    <Name>FSharp.Control.FusionTasksTests.PCL47</Name>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
@@ -101,8 +99,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FSharp.Control.FusionTasks.PCL2\FSharp.Control.FusionTasks.PCL2.fsproj">
-      <Name>FSharp.Control.FusionTasks.PCL2</Name>
+    <ProjectReference Include="..\FSharp.Control.FusionTasks.PCL47\FSharp.Control.FusionTasks.PCL47.fsproj">
+      <Name>FSharp.Control.FusionTasks.PCL47</Name>
       <Project>{1229f4f2-5501-44fa-b919-347eba76cb02}</Project>
       <Private>True</Private>
     </ProjectReference>

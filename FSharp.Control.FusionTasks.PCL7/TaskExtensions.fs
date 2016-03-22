@@ -25,6 +25,12 @@ open System.Threading
 open System.Threading.Tasks
 open FSharp.Control
 
+#if PCL2
+open Microsoft.Runtime.CompilerServices
+#else
+open System.Runtime.CompilerServices
+#endif
+
 /// <summary>
 /// Seamless conversion extensions in standard .NET Task based infrastructure.
 /// </summary>
@@ -33,13 +39,27 @@ open FSharp.Control
 [<AbstractClass>]
 type TaskExtensions =
 
+  ///////////////////////////////////////////////////////////////////////////////////
+  // .NET (C#) side Task --> Async conversion extensions.
+
   /// <summary>
   /// Seamless conversion from .NET Task to F# Async.
   /// </summary>
   /// <param name="task">.NET Task</param>
   /// <returns>F# Async (FSharpAsync&lt;Unit&gt;)</returns>
   [<Extension>]
-  static member AsAsync (task: Task) = task |> Async.AsAsync
+  static member AsAsync (task: Task) =
+    AsyncExtensions.asAsync (task, None)
+
+  /// <summary>
+  /// Seamless conversion from .NET Task to F# Async.
+  /// </summary>
+  /// <param name="task">.NET Task</param>
+  /// <param name="token">Cancellation token</param>
+  /// <returns>F# Async (FSharpAsync&lt;Unit&gt;)</returns>
+  [<Extension>]
+  static member AsAsync (task: Task, token: CancellationToken) =
+    AsyncExtensions.asAsync (task, Some token)
 
   /// <summary>
   /// Seamless conversion from .NET Task to F# Async.
@@ -48,7 +68,51 @@ type TaskExtensions =
   /// <param name="task">.NET Task&lt;'T&gt;</param>
   /// <returns>F# Async&lt;'T&gt; (FSharpAsync&lt;'T&gt;)</returns>
   [<Extension>]
-  static member AsAsync (task: Task<'T>) = task |> Async.AsAsync
+  static member AsAsync (task: Task<'T>) =
+    AsyncExtensions.asAsyncT (task, None)
+
+  /// <summary>
+  /// Seamless conversion from .NET Task to F# Async.
+  /// </summary>
+  /// <typeparam name="'T">Computation result type</typeparam> 
+  /// <param name="task">.NET Task&lt;'T&gt;</param>
+  /// <param name="token">Cancellation token</param>
+  /// <returns>F# Async&lt;'T&gt; (FSharpAsync&lt;'T&gt;)</returns>
+  [<Extension>]
+  static member AsAsync (task: Task<'T>, token: CancellationToken) =
+    AsyncExtensions.asAsyncT (task, Some token)
+
+  /// <summary>
+  /// Seamless conversion from .NET Task to F# Async.
+  /// </summary>
+  /// <param name="cta">.NET ConfiguredTaskAwaitable</param>
+  /// <returns>F# Async (FSharpAsync&lt;Unit&gt;)</returns>
+  [<Extension>]
+  static member AsAsync (cta: ConfiguredTaskAwaitable) =
+    AsyncExtensions.asAsyncCTA(cta)
+
+  /// <summary>
+  /// Seamless conversion from .NET Task to F# Async.
+  /// </summary>
+  /// <typeparam name="'T">Computation result type</typeparam> 
+  /// <param name="cta">.NET ConfiguredTaskAwaitable&lt;'T&gt;</param>
+  /// <returns>F# Async&lt;'T&gt; (FSharpAsync&lt;'T&gt;)</returns>
+  [<Extension>]
+  static member AsAsync (cta: ConfiguredTaskAwaitable<'T>) =
+    AsyncExtensions.asAsyncCTAT(cta)
+
+  /// <summary>
+  /// Seamless conversion from .NET Task to F# Async.
+  /// </summary>
+  /// <param name="ya">.NET YieldAwaitable</param>
+  /// <param name="token">Cancellation token</param>
+  /// <returns>F# Async&lt;'T&gt; (FSharpAsync&lt;'T&gt;)</returns>
+  [<Extension>]
+  static member AsAsync (ya: YieldAwaitable) =
+    AsyncExtensions.asAsyncYA(ya)
+
+  ///////////////////////////////////////////////////////////////////////////////////
+  // .NET (C#) side Async --> Task conversion extensions.
 
   /// <summary>
   /// Seamless conversion from F# Async to .NET Task.
@@ -56,7 +120,8 @@ type TaskExtensions =
   /// <param name="async">F# Async (FSharpAsync&lt;Unit&gt;)</param>
   /// <returns>.NET Task</returns>
   [<Extension>]
-  static member AsTask (async: Async<unit>) = async |> Async.AsTask
+  static member AsTask (async: Async<unit>) =
+    AsyncExtensions.asTask (async, None) :> Task
 
   /// <summary>
   /// Seamless conversion from F# Async to .NET Task.
@@ -65,7 +130,8 @@ type TaskExtensions =
   /// <param name="token">Cancellation token</param>
   /// <returns>.NET Task</returns>
   [<Extension>]
-  static member AsTask (async: Async<unit>, token: CancellationToken) = (async, token) |> Async.AsTask
+  static member AsTask (async: Async<unit>, token: CancellationToken) =
+    AsyncExtensions.asTask (async, Some token) :> Task
 
   /// <summary>
   /// Seamless conversion from F# Async to .NET Task.
@@ -74,7 +140,8 @@ type TaskExtensions =
   /// <param name="async">F# Async&lt;'T&gt; (FSharpAsync&lt;'T&gt;)</param>
   /// <returns>.NET Task&lt;'T&gt;</returns>
   [<Extension>]
-  static member AsTask (async: Async<'T>) = async |> Async.AsTask
+  static member AsTask (async: Async<'T>) =
+    AsyncExtensions.asTask (async, None)
 
   /// <summary>
   /// Seamless conversion from F# Async to .NET Task.
@@ -84,7 +151,11 @@ type TaskExtensions =
   /// <param name="token">Cancellation token</param>
   /// <returns>.NET Task&lt;'T&gt;</returns>
   [<Extension>]
-  static member AsTask (async: Async<'T>, token: CancellationToken) = (async, token) |> Async.AsTask
+  static member AsTask (async: Async<'T>, token: CancellationToken) =
+    AsyncExtensions.asTask (async, Some token)
+
+  ///////////////////////////////////////////////////////////////////////////////////
+  // .NET (C#) side Async awaitabler extensions.
 
   /// <summary>
   /// Seamless awaiter support for F# Async.
@@ -93,7 +164,7 @@ type TaskExtensions =
   /// <returns>.NET TaskAwaiter</returns>
   [<Extension>]
   static member GetAwaiter (async: Async<unit>) =
-    let task = async |> Async.AsTask
+    let task = AsyncExtensions.asTask (async, None) :> Task
     task.GetAwaiter()
 
   /// <summary>
@@ -104,5 +175,5 @@ type TaskExtensions =
   /// <returns>.NET TaskAwaiter&lt;'T&gt;</returns>
   [<Extension>]
   static member GetAwaiter (async: Async<'T>) =
-    let task = async |> Async.AsTask
+    let task = AsyncExtensions.asTask (async, None)
     task.GetAwaiter()

@@ -46,6 +46,19 @@ namespace FSharp.Control.FusionTasksTests
             FSharpAsync.RunSynchronously(asy, FSharpOption<int>.None, FSharpOption<CancellationToken>.None);
         }
 
+#if PCL7 || PCL47
+#else
+        [TestMethod]
+        public void ConfiguredTaskAwaiterAsAsyncTest()
+        {
+            var task = DelayAsync().ConfigureAwait(false);
+            var asy = task.AsAsync();
+
+            // MSTest not supported FSharpAsync based tests, so run synchronously here. 
+            FSharpAsync.RunSynchronously(asy, FSharpOption<int>.None, FSharpOption<CancellationToken>.None);
+        }
+#endif
+
         private static async Task<int> DelayAndReturnAsync()
         {
             await Task.Delay(500);
@@ -61,6 +74,19 @@ namespace FSharp.Control.FusionTasksTests
             // MSTest not supported FSharpAsync based tests, so run synchronously here. 
             FSharpAsync.RunSynchronously(asy, FSharpOption<int>.None, FSharpOption<CancellationToken>.None);
         }
+
+#if PCL7 || PCL47
+#else
+        [TestMethod]
+        public void ConfiguredTaskAwaiterTAsAsyncTest()
+        {
+            var task = DelayAndReturnAsync().ConfigureAwait(false);
+            var asy = task.AsAsync();
+
+            // MSTest not supported FSharpAsync based tests, so run synchronously here. 
+            FSharpAsync.RunSynchronously(asy, FSharpOption<int>.None, FSharpOption<CancellationToken>.None);
+        }
+#endif
         #endregion
 
         #region FSharpAsync<'T>.AsTask
@@ -103,23 +129,28 @@ namespace FSharp.Control.FusionTasksTests
             Assert.Fail();
         }
 
+        private static async Task<int> DelayAndReturnAsync(CancellationToken token)
+        {
+            await Task.Delay(500, token); /* explicitly */
+            return 123;
+        }
+
         [TestMethod]
         [ExpectedException(typeof(OperationCanceledException))]
-        //[Ignore]    // See below...
         public async Task AsyncTAsTaskWithCancellationTestAsync()
         {
-            // TODO: CancellationToken not derived from CTS to Task.Delay (in DelayAndReturnAsync).
-            //   Derived sequence: cts.Cancel() --> AsTask() --> AsAsync() --> DelayAndReturnAsync() --> Task.Delay()
-            //   Test may be normal... Test failed exactly normal?
-            //   Task/Async infrastructure can't support implicitly cancellation-token by context??
-            //   or how to derive cancellation signal from Async to Task???
+            // Information:
+            //   F#'s CancellationToken is managing contextual token in async computation expression.
+            //   But .NET CancellationToken is no contextual/default token, in C# too.
+            //   So no automatic implicit derive tokens, token just explicit set to any async operation:
+            //     Task.Delay(int, token) <-- DelayAndReturnAsync(token) <-- cts.Token
 
             var cts = new CancellationTokenSource();
 
             // C# cannot create FSharpAsync<'T>, so create C#'ed Task<T> and convert to FSharpAsync<'T>.
-            var task = (Task)DelayAndReturnAsync();
+            var task = (Task)DelayAndReturnAsync(/* explicitly */ cts.Token);
             var asy = task.AsAsync();
-            var outerTask = asy.AsTask(cts.Token);
+            var outerTask = asy.AsTask(cts.Token); /* explicitly, but not derived into DelayAndReturnAsync() */
 
             // Force hard wait.
             Thread.Sleep(100);

@@ -1,16 +1,20 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasks.PCL2", "FSharp.Control.FusionTasks.PCL2\FSharp.Control.FusionTasks.PCL2.fsproj", "{1229F4F2-5501-44FA-B919-347EBA76CB02}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasks.PCL47", "FSharp.Control.FusionTasks.PCL47\FSharp.Control.FusionTasks.PCL47.fsproj", "{1229F4F2-5501-44FA-B919-347EBA76CB02}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{1B5F5358-3E99-41E1-B951-F9BB13BEAC9B}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
 	EndProjectSection
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasksTests", "FSharp.Control.FusionTasksTests\FSharp.Control.FusionTasksTests.fsproj", "{C3406FB4-D9D8-4859-AF6C-FA3BB786CCF9}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasksTests.PCL47", "FSharp.Control.FusionTasksTests.PCL47\FSharp.Control.FusionTasksTests.PCL47.fsproj", "{C3406FB4-D9D8-4859-AF6C-FA3BB786CCF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSharp.Control.FusionTasksTests.CSharp", "FSharp.Control.FusionTasksTests.CSharp\FSharp.Control.FusionTasksTests.CSharp.csproj", "{41806364-953E-4BDC-ACAE-C719691BFC93}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSharp.Control.FusionTasksTests.CSharp.PCL47", "FSharp.Control.FusionTasksTests.CSharp.PCL47\FSharp.Control.FusionTasksTests.CSharp.PCL47.csproj", "{41806364-953E-4BDC-ACAE-C719691BFC93}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasks.NET4", "FSharp.Control.FusionTasks.NET4\FSharp.Control.FusionTasks.NET4.fsproj", "{8FC4FD09-1D3E-4733-B6CB-5D3F04F3A9EF}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasks.PCL7", "FSharp.Control.FusionTasks.PCL7\FSharp.Control.FusionTasks.PCL7.fsproj", "{FA8F8CD1-54C7-4E87-A46B-13C2AD301394}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,6 +34,14 @@ Global
 		{41806364-953E-4BDC-ACAE-C719691BFC93}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{41806364-953E-4BDC-ACAE-C719691BFC93}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{41806364-953E-4BDC-ACAE-C719691BFC93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FC4FD09-1D3E-4733-B6CB-5D3F04F3A9EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FC4FD09-1D3E-4733-B6CB-5D3F04F3A9EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FC4FD09-1D3E-4733-B6CB-5D3F04F3A9EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FC4FD09-1D3E-4733-B6CB-5D3F04F3A9EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA8F8CD1-54C7-4E87-A46B-13C2AD301394}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA8F8CD1-54C7-4E87-A46B-13C2AD301394}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA8F8CD1-54C7-4E87-A46B-13C2AD301394}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA8F8CD1-54C7-4E87-A46B-13C2AD301394}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -7,7 +7,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>FSharp.Control.FusionTasksTests</RootNamespace>
-    <AssemblyName>FSharp.Control.FusionTasksTests</AssemblyName>
+    <AssemblyName>FSharp.Control.FusionTasksTests.CSharp</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -22,7 +22,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;PCL47</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -30,7 +30,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>TRACE;PCL47</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -68,9 +68,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FSharp.Control.FusionTasks.PCL2\FSharp.Control.FusionTasks.PCL2.fsproj">
+    <ProjectReference Include="..\FSharp.Control.FusionTasks.PCL47\FSharp.Control.FusionTasks.PCL47.fsproj">
       <Project>{1229f4f2-5501-44fa-b919-347eba76cb02}</Project>
-      <Name>FSharp.Control.FusionTasks.PCL2</Name>
+      <Name>FSharp.Control.FusionTasks.PCL47</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

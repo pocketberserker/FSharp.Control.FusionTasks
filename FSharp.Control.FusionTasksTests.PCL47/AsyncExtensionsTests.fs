@@ -22,6 +22,7 @@ module FSharp.Control.FusionTasksTests.AsyncExtensions
 open System
 open System.IO
 open System.Diagnostics
+open System.Threading.Tasks
 
 open FSharp.Control
 
@@ -55,3 +56,40 @@ let AsyncBuilderAsAsyncTTest() =
     }
   let results = computation |> Async.RunSynchronously  // FSUnit not supported Async/Task based tests, so run synchronously here. 
   results |> should equal data
+  
+[<Test>]
+let AsyncBuilderAsAsyncCTATest() =
+  let r = Random()
+  let data = Seq.init 100000 (fun i -> 0uy) |> Seq.toArray
+  do r.NextBytes data
+  use ms = new MemoryStream()
+  let computation = async {
+      do! ms.WriteAsync(data, 0, data.Length).ConfigureAwait(false)
+    }
+  do computation |> Async.RunSynchronously  // FSUnit not supported Async/Task based tests, so run synchronously here. 
+  ms.ToArray() |> should equal data
+    
+[<Test>]
+let AsyncBuilderAsAsyncCTATTest() =
+  let r = Random()
+  let data = Seq.init 100000 (fun i -> 0uy) |> Seq.toArray
+  do r.NextBytes data
+  let computation = async {
+      use ms = new MemoryStream()
+      do ms.Write(data, 0, data.Length)
+      do ms.Position <- 0L
+      let! length = ms.ReadAsync(data, 0, data.Length).ConfigureAwait(false)
+      do length |> should equal data.Length
+      return ms.ToArray()
+    }
+  let results = computation |> Async.RunSynchronously  // FSUnit not supported Async/Task based tests, so run synchronously here. 
+  results |> should equal data
+    
+[<Test>]
+let AsyncBuilderAsAsyncYATest() =
+  let computation = async {
+      do! TaskEx.Yield()
+      return 123
+    }
+  let results = computation |> Async.RunSynchronously  // FSUnit not supported Async/Task based tests, so run synchronously here. 
+  results |> should equal 123
