@@ -20,6 +20,11 @@
 			<dependency id="Microsoft.Bcl.Build" version="1.0.21" />
 			<dependency id="Microsoft.Bcl.Async" version="1.0.168" />
 		</dependencies>
+		<frameworkAssemblies>
+			<frameworkAssembly assemblyName="System.Data" />
+			<frameworkAssembly assemblyName="System.ServiceModel" />
+			<frameworkAssembly assemblyName="System.ServiceModel.Discovery" />
+		</frameworkAssemblies>
 		<!-- Optional metadata
 			<frameworkAssemblies>
 				<frameworkAssembly assemblyName="System" targetFramework=".NETFramework4.0" />
