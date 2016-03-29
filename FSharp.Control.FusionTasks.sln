@@ -31,6 +31,17 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasks.
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasks.FS4PCL259", "FSharp.Control.FusionTasks.FS4PCL259\FSharp.Control.FusionTasks.FS4PCL259.fsproj", "{1A94FCF3-2693-4CBF-8814-1818A80FF67F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BEB599F7-8021-4E01-9200-B9ABF1D9D623}"
+	ProjectSection(SolutionItems) = preProject
+		build-nupkg.bat = build-nupkg.bat
+		CommonAssemblyInfo.fs = CommonAssemblyInfo.fs
+		FSharp.Control.FusionTasks.FS20.nuspec = FSharp.Control.FusionTasks.FS20.nuspec
+		FSharp.Control.FusionTasks.FS30.nuspec = FSharp.Control.FusionTasks.FS30.nuspec
+		FSharp.Control.FusionTasks.FS31.nuspec = FSharp.Control.FusionTasks.FS31.nuspec
+		FSharp.Control.FusionTasks.FS40.nuspec = FSharp.Control.FusionTasks.FS40.nuspec
+		FSharp.Control.FusionTasks.snk = FSharp.Control.FusionTasks.snk
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

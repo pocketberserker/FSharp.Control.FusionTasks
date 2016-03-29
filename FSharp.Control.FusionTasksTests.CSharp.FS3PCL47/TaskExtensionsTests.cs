@@ -1,6 +1,6 @@
 ﻿/////////////////////////////////////////////////////////////////////////////////////////////////
 //
-// FSharp.Control.FusionTasks - Async computation elements fusioning Tasks in F#/C#
+// FSharp.Control.FusionTasks - F# Async computation <--> .NET Task easy seamless interoperability library.
 // Copyright (c) 2016 Kouji Matsui (@kekyo2)
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
