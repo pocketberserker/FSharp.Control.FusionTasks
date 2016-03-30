@@ -44,6 +44,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{5EA37107-7C53-4291-8EAD-543B392CE2B1}"
+	ProjectSection(SolutionItems) = preProject
+		Images\FSharp.Control.FusionTasks.100.png = Images\FSharp.Control.FusionTasks.100.png
+		Images\FSharp.Control.FusionTasks.128.png = Images\FSharp.Control.FusionTasks.128.png
+		Images\FSharp.Control.FusionTasks.design = Images\FSharp.Control.FusionTasks.design
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
