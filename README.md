@@ -46,6 +46,7 @@ let AsyncBuilderAsAsyncTTest() =
 
 ``` csharp
 using System.Threading.Tasks;
+using Microsoft.FSharp.Control;
 
 public async Task AsyncAwaitableTest()
 {
@@ -79,8 +80,8 @@ public static async Task AsyncTAwaitableTest(FSharpAsync<int> asy)
 
 ## How to use
 * Search NuGet package and install "FSharp.Control.FusionTasks.FS??". You must select F# version.
-* F# use, open namespace "FSharp.Control". "System.Threading.Tasks" is optional.
-* C# use, using namespace "System.Threading.Tasks". "FSharp.Control" is optional.
+* F# use, autoopen'd namespace "FSharp.Control". "System.Threading.Tasks" is optional.
+* C# use, using namespace "System.Threading.Tasks". "Microsoft.FSharp.Control" is optional.
 
 ## TODO
 * Improvements PCL Profiles.
