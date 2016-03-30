@@ -69,7 +69,8 @@ namespace FSharp.Control.FusionTasksTests
             var asy = task.AsAsync();
 
             // MSTest not supported FSharpAsync based tests, so run synchronously here. 
-            FSharpAsync.RunSynchronously(asy, FSharpOption<int>.None, FSharpOption<CancellationToken>.None);
+            var result = FSharpAsync.RunSynchronously(asy, FSharpOption<int>.None, FSharpOption<CancellationToken>.None);
+            Assert.AreEqual(123, result);
         }
 
         [TestMethod]
@@ -79,7 +80,8 @@ namespace FSharp.Control.FusionTasksTests
             var asy = task.AsAsyncConfigured(false);
 
             // MSTest not supported FSharpAsync based tests, so run synchronously here. 
-            FSharpAsync.RunSynchronously(asy, FSharpOption<int>.None, FSharpOption<CancellationToken>.None);
+            var result = FSharpAsync.RunSynchronously(asy, FSharpOption<int>.None, FSharpOption<CancellationToken>.None);
+            Assert.AreEqual(123, result);
         }
         #endregion
 
