@@ -12,18 +12,16 @@
 * F# Async computation <--> .NET Task easy seamless interoperability library.
 * Sample codes (F# side):
 
-``` csharp
-open FSharp.Control
-
+``` fsharp
 let AsyncBuilderAsAsyncTest() =
   let r = Random()
   let data = Seq.init 100000 (fun i -> 0uy) |> Seq.toArray
   do r.NextBytes data
   use ms = new MemoryStream()
   let computation = async {
-      // FusionTasks directory interpreted System.Threading.Tasks.Task class in F# computation block.
-      do! ms.WriteAsync(data, 0, data.Length)
-    }
+	  // FusionTasks directory interpreted System.Threading.Tasks.Task class in F# computation block.
+	  do! ms.WriteAsync(data, 0, data.Length)
+	}
   do computation |> Async.RunSynchronously
   ms.ToArray() |> should equal data
   
@@ -32,14 +30,14 @@ let AsyncBuilderAsAsyncTTest() =
   let data = Seq.init 100000 (fun i -> 0uy) |> Seq.toArray
   do r.NextBytes data
   let computation = async {
-      use ms = new MemoryStream()
-      do ms.Write(data, 0, data.Length)
-      do ms.Position <- 0L
-      // FusionTasks directory interpreted System.Threading.Tasks.Task<T> class in F# computation block.
-      let! length = ms.ReadAsync(data, 0, data.Length)
-      do length |> should equal data.Length
-      return ms.ToArray()
-    }
+	  use ms = new MemoryStream()
+	  do ms.Write(data, 0, data.Length)
+	  do ms.Position <- 0L
+	  // FusionTasks directory interpreted System.Threading.Tasks.Task<T> class in F# computation block.
+	  let! length = ms.ReadAsync(data, 0, data.Length)
+	  do length |> should equal data.Length
+	  return ms.ToArray()
+	}
   let results = computation |> Async.RunSynchronously
   results |> should equal data
 ```
@@ -49,57 +47,18 @@ let AsyncBuilderAsAsyncTTest() =
 ``` csharp
 using System.Threading.Tasks;
 
-private static async Task DelayAsync()
+public async Task AsyncAwaitableTest()
 {
-    await Task.Delay(500);
-    Console.WriteLine("AAA");
+  // FusionTasks simple usage F#'s Async<unit> direct awaitable.
+  await FSharpAsync.Sleep(500);
+  Console.WriteLine("F# async computation done.");
 }
 
-public void TaskAsAsyncTest()
+public static async Task AsyncTAwaitableTest(FSharpAsync<int> asy)
 {
-    var task = DelayAsync();
-    
-    // FusionTasks simple convert to F#'s Async<unit>
-    var asy = task.AsAsync();
-    FSharpAsync.RunSynchronously(asy, FSharpOption<int>.None, FSharpOption<CancellationToken>.None);
-}
-
-private static async Task<int> DelayAndReturnAsync()
-{
-    await Task.Delay(500);
-    return 123;
-}
-
-public void TaskTAsAsyncTest()
-{
-    var task = DelayAndReturnAsync();
-
-    // FusionTasks simple convert from .NET Task<int> to F#'s Async<int>
-    var asy = task.AsAsync();
-    var result = FSharpAsync.RunSynchronously(asy, FSharpOption<int>.None, FSharpOption<CancellationToken>.None);
-    Debug.Assert(result == 123);
-}
-
-public async Task AsyncTAsTaskTestAsync()
-{
-    // (C# cannot create F#'s Async<T>, so create .NET Task<T> and convert to Async<'T>.)
-    var task = DelayAndReturnAsync();
-    var asy = task.AsAsync();
-    
-    // FusionTasks simple convert from F#'s Async<int> to .NET Task<int>, can awaitable.
-    var result = await asy.AsTask();
-    Debug.Assert(result == 123);
-}
-
-public async Task AsyncTAwaitableTestAsync()
-{
-    // (C# cannot create F#'s Async<T>, so create .NET Task<T> and convert to Async<'T>.)
-    var task = DelayAndReturnAsync();
-    var asy = task.AsAsync();
-    
-    // FusionTasks direct await support.
-    var result = await asy;
-    Debug.Assert(result == 123);
+  // FusionTasks simple usage F#'s Async<int> direct awaitable.
+  var result = await asy;
+  Console.WriteLine("F# async computation done: Result=" + result);
 }
 ```
 

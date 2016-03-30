@@ -24,8 +24,6 @@ open System.IO
 open System.Diagnostics
 open System.Threading.Tasks
 
-open FSharp.Control
-
 open NUnit.Framework
 open FsUnit
 

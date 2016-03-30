@@ -27,4 +27,5 @@ namespace global
 #else
     [<assembly: System.Reflection.AssemblyConfiguration("RELEASE")>]
 #endif
+    [<assembly: AutoOpen("Microsoft.FSharp.Control")>]
     do()

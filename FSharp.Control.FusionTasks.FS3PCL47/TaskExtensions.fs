@@ -23,7 +23,7 @@ open System
 open System.Runtime.CompilerServices
 open System.Threading
 open System.Threading.Tasks
-open FSharp.Control
+open Microsoft.FSharp.Control
 
 /// <summary>
 /// Seamless conversion extensions in standard .NET Task based infrastructure.

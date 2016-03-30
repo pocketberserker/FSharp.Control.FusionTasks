@@ -7,15 +7,16 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{1a94fcf3-2693-4cbf-8814-1818a80ff67f}</ProjectGuid>
     <OutputType>Library</OutputType>
+    <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <RootNamespace>FSharp.Control.FusionTasks</RootNamespace>
     <AssemblyName>FSharp.Control.FusionTasks</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Profile259</TargetFrameworkProfile>
     <TargetProfile>netcore</TargetProfile>
-    <TargetFSharpCoreVersion>3.259.4.0</TargetFSharpCoreVersion>
     <Name>FSharp.Control.FusionTasks</Name>
     <RestorePackages>true</RestorePackages>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFSharpCoreVersion>3.259.4.0</TargetFSharpCoreVersion>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
   </PropertyGroup>
