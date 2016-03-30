@@ -11,7 +11,7 @@
 		<copyright>Copyright (c) 2016 Kouji Matsui</copyright>
 		<licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
 		<projectUrl>https://github.com/kekyo/FSharp.Control.FusionTasks</projectUrl>
-		<iconUrl>https://raw.githubusercontent.com/kekyo/CenterCLR.FSharp.Control.FusionTasks/master/Images/FusionTasks.100.png</iconUrl>
+		<iconUrl>https://raw.githubusercontent.com/kekyo/FSharp.Control.FusionTasks/master/Images/FSharp.Control.FusionTasks.100.png</iconUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<releaseNotes>FusionTasks is F# Async computation &lt;--&gt; .NET Task easy seamless interoperability library.</releaseNotes>
 		<tags>F# Async Task C# await interop seamless computation Builder extension</tags>
