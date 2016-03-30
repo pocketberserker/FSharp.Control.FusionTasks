@@ -13,6 +13,8 @@
 * Sample codes (F# side):
 
 ``` csharp
+open FSharp.Control
+
 let AsyncBuilderAsAsyncTest() =
   let r = Random()
   let data = Seq.init 100000 (fun i -> 0uy) |> Seq.toArray
@@ -45,6 +47,8 @@ let AsyncBuilderAsAsyncTTest() =
 * Sample codes (C# side):
 
 ``` csharp
+using System.Threading.Tasks;
+
 private static async Task DelayAsync()
 {
     await Task.Delay(500);
@@ -55,7 +59,7 @@ public void TaskAsAsyncTest()
 {
     var task = DelayAsync();
     
-    // FusionTasks simple convert to F#'s FSharpAsync<unit>
+    // FusionTasks simple convert to F#'s Async<unit>
     var asy = task.AsAsync();
     FSharpAsync.RunSynchronously(asy, FSharpOption<int>.None, FSharpOption<CancellationToken>.None);
 }
@@ -70,7 +74,7 @@ public void TaskTAsAsyncTest()
 {
     var task = DelayAndReturnAsync();
 
-    // FusionTasks simple convert to F#'s FSharpAsync<int>
+    // FusionTasks simple convert from .NET Task<int> to F#'s Async<int>
     var asy = task.AsAsync();
     var result = FSharpAsync.RunSynchronously(asy, FSharpOption<int>.None, FSharpOption<CancellationToken>.None);
     Debug.Assert(result == 123);
@@ -78,12 +82,23 @@ public void TaskTAsAsyncTest()
 
 public async Task AsyncTAsTaskTestAsync()
 {
-    // (C# cannot create FSharpAsync<'T>, so create C#'ed Task<T> and convert to FSharpAsync<'T>.)
+    // (C# cannot create F#'s Async<T>, so create .NET Task<T> and convert to Async<'T>.)
     var task = DelayAndReturnAsync();
     var asy = task.AsAsync();
     
-    // FusionTasks simple convert to .NET Task<int>, can awaitable.
+    // FusionTasks simple convert from F#'s Async<int> to .NET Task<int>, can awaitable.
     var result = await asy.AsTask();
+    Debug.Assert(result == 123);
+}
+
+public async Task AsyncTAwaitableTestAsync()
+{
+    // (C# cannot create F#'s Async<T>, so create .NET Task<T> and convert to Async<'T>.)
+    var task = DelayAndReturnAsync();
+    var asy = task.AsAsync();
+    
+    // FusionTasks direct await support.
+    var result = await asy;
     Debug.Assert(result == 123);
 }
 ```
