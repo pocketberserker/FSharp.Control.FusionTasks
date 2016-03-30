@@ -46,18 +46,15 @@ namespace FSharp.Control.FusionTasksTests
             FSharpAsync.RunSynchronously(asy, FSharpOption<int>.None, FSharpOption<CancellationToken>.None);
         }
 
-#if PCL7 || PCL47
-#else
         [TestMethod]
-        public void ConfiguredTaskAwaiterAsAsyncTest()
+        public void ConfiguredAsyncAwaiterAsAsyncTest()
         {
-            var task = DelayAsync().ConfigureAwait(false);
-            var asy = task.AsAsync();
+            var task = DelayAsync();
+            var asy = task.AsAsyncConfigured(false);
 
             // MSTest not supported FSharpAsync based tests, so run synchronously here. 
             FSharpAsync.RunSynchronously(asy, FSharpOption<int>.None, FSharpOption<CancellationToken>.None);
         }
-#endif
 
         private static async Task<int> DelayAndReturnAsync()
         {
@@ -75,18 +72,15 @@ namespace FSharp.Control.FusionTasksTests
             FSharpAsync.RunSynchronously(asy, FSharpOption<int>.None, FSharpOption<CancellationToken>.None);
         }
 
-#if PCL7 || PCL47
-#else
         [TestMethod]
-        public void ConfiguredTaskAwaiterTAsAsyncTest()
+        public void ConfiguredAsyncAwaiterTAsAsyncTest()
         {
-            var task = DelayAndReturnAsync().ConfigureAwait(false);
-            var asy = task.AsAsync();
+            var task = DelayAndReturnAsync();
+            var asy = task.AsAsyncConfigured(false);
 
             // MSTest not supported FSharpAsync based tests, so run synchronously here. 
             FSharpAsync.RunSynchronously(asy, FSharpOption<int>.None, FSharpOption<CancellationToken>.None);
         }
-#endif
         #endregion
 
         #region FSharpAsync<'T>.AsTask

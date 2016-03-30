@@ -24,21 +24,16 @@ open System.Runtime.CompilerServices
 open System.Threading
 open System.Threading.Tasks
 
-#if PCL7
-open Microsoft.Runtime.CompilerServices
-#else
-#if PCL47
-open Microsoft.Runtime.CompilerServices
-#else
-open System.Runtime.CompilerServices
-#endif
-#endif
-
 [<AutoOpen>]
 module AsyncExtensions =
 
   ///////////////////////////////////////////////////////////////////////////////////
   // Internal implementations.
+
+  let private (|IsFaulted|IsCanceled|IsCompleted|) (task: Task) =
+    if task.IsFaulted then IsFaulted task.Exception
+    else if task.IsCanceled then IsCanceled
+    else IsCompleted
 
   let private safeToken (ct: CancellationToken option) =
     match ct with
@@ -54,11 +49,6 @@ module AsyncExtensions =
       tcs.SetException, // Derived from original OperationCancelledException
       safeToken ct)
     tcs.Task
-
-  let private (|IsFaulted|IsCanceled|IsCompleted|) (task: Task) =
-    if task.IsFaulted then IsFaulted task.Exception
-    else if task.IsCanceled then IsCanceled
-    else IsCompleted
 
   let internal asAsync(task: Task, ct: CancellationToken option) =
     Async.FromContinuations(
@@ -84,7 +74,7 @@ module AsyncExtensions =
           safeToken ct)
         |> ignore)
 
-  let internal asAsyncCTA(cta: ConfiguredTaskAwaitable) =
+  let internal asAsyncCTA(cta: ConfiguredAsyncAwaitable) =
     Async.FromContinuations(
       fun (completed, caught, canceled) ->
         let awaiter = cta.GetAwaiter()
@@ -96,25 +86,13 @@ module AsyncExtensions =
             with exn -> caught(exn)))
         |> ignore)
 
-  let internal asAsyncCTAT(cta: ConfiguredTaskAwaitable<'T>) =
+  let internal asAsyncCTAT(cta: ConfiguredAsyncAwaitable<'T>) =
     Async.FromContinuations(
       fun (completed, caught, canceled) ->
         let awaiter = cta.GetAwaiter()
         awaiter.OnCompleted(
           new Action(fun _ ->
             try completed(awaiter.GetResult())
-            with exn -> caught(exn)))
-        |> ignore)
-
-  let internal asAsyncYA(ya: YieldAwaitable) =
-    Async.FromContinuations(
-      fun (completed, caught, canceled) ->
-        let awaiter = ya.GetAwaiter()
-        awaiter.OnCompleted(
-          new Action(fun _ ->
-            try
-              awaiter.GetResult()
-              completed()
             with exn -> caught(exn)))
         |> ignore)
 
@@ -162,7 +140,7 @@ module AsyncExtensions =
     /// </summary>
     /// <param name="cta">.NET ConfiguredTaskAwaitable (expr.ConfigureAwait(...))</param>
     /// <returns>F# Async</returns>
-    static member AsAsync(cta: ConfiguredTaskAwaitable) = asAsyncCTA(cta)
+    static member AsAsync(cta: ConfiguredAsyncAwaitable) = asAsyncCTA(cta)
 
     /// <summary>
     /// Seamless conversion from .NET Task to F# Async.
@@ -170,14 +148,7 @@ module AsyncExtensions =
     /// <typeparam name="'T">Computation result type</typeparam> 
     /// <param name="cta">.NET ConfiguredTaskAwaitable (expr.ConfigureAwait(...))</param>
     /// <returns>F# Async</returns>
-    static member AsAsync(cta: ConfiguredTaskAwaitable<'T>) = asAsyncCTAT(cta)
-
-    /// <summary>
-    /// Seamless conversion from .NET Task to F# Async.
-    /// </summary>
-    /// <param name="ya">.NET YieldAwaitable (expr.Yield())</param>
-    /// <returns>F# Async</returns>
-    static member AsAsync(ya: YieldAwaitable) = asAsyncYA(ya)
+    static member AsAsync(cta: ConfiguredAsyncAwaitable<'T>) = asAsyncCTAT(cta)
 
   ///////////////////////////////////////////////////////////////////////////////////
   // F# side async computation builder extensions.
@@ -204,7 +175,7 @@ module AsyncExtensions =
     /// </summary>
     /// <param name="cta">.NET ConfiguredTaskAwaitable (expr.ConfigureAwait(...))</param>
     /// <returns>F# Async</returns>
-    member __.Source(cta: ConfiguredTaskAwaitable) = asAsyncCTA(cta)
+    member __.Source(cta: ConfiguredAsyncAwaitable) = asAsyncCTA(cta)
 
     /// <summary>
     /// Seamless conversion from .NET Task to F# Async in Async workflow.
@@ -212,11 +183,29 @@ module AsyncExtensions =
     /// <typeparam name="'T">Computation result type</typeparam> 
     /// <param name="cta">.NET ConfiguredTaskAwaitable (expr.ConfigureAwait(...))</param>
     /// <returns>F# Async</returns>
-    member __.Source(cta: ConfiguredTaskAwaitable<'T>) = asAsyncCTAT(cta)
+    member __.Source(cta: ConfiguredAsyncAwaitable<'T>) = asAsyncCTAT(cta)
+
+  ///////////////////////////////////////////////////////////////////////////////////
+  // F# side Task class extensions.
+
+  type Task with
 
     /// <summary>
-    /// Seamless conversion from .NET Task to F# Async in Async workflow.
+    /// Seamless conversionable substitution Task.ConfigureAwait()
     /// </summary>
-    /// <param name="ya">.NET YieldAwaitable (expr.Yield())</param>
-    /// <returns>F# Async</returns>
-    member __.Source(ya: YieldAwaitable) = asAsyncYA(ya)
+    /// <param name="task">.NET Task</param>
+    /// <param name="continueOnCapturedContext">True if continuation running on captured SynchronizationContext</param>
+    /// <returns>ConfiguredAsyncAwaitable</returns>
+    member task.Configure(continueOnCapturedContext: bool) =
+        ConfiguredAsyncAwaitable(task.ConfigureAwait(continueOnCapturedContext))
+
+  type Task<'T> with
+
+    /// <summary>
+    /// Seamless conversionable substitution Task.ConfigureAwait()
+    /// </summary>
+    /// <param name="task">.NET Task&lt;'T&gt;</param>
+    /// <param name="continueOnCapturedContext">True if continuation running on captured SynchronizationContext</param>
+    /// <returns>ConfiguredAsyncAwaitable</returns>
+    member task.Configure(continueOnCapturedContext: bool) =
+        ConfiguredAsyncAwaitable<'T>(task.ConfigureAwait(continueOnCapturedContext))

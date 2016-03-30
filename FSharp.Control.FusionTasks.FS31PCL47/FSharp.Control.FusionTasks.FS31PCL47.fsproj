@@ -57,6 +57,9 @@
     <Compile Include="..\CommonAssemblyInfo.fs">
       <Link>CommonAssemblyInfo.fs</Link>
     </Compile>
+    <Compile Include="..\FSharp.Control.FusionTasks.FS3PCL47\Awaiters.fs">
+      <Link>Awaiters.fs</Link>
+    </Compile>
     <Compile Include="..\FSharp.Control.FusionTasks.FS3PCL47\AsyncExtensions.fs">
       <Link>AsyncExtensions.fs</Link>
     </Compile>

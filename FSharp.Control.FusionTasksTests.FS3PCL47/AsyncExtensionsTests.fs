@@ -64,7 +64,7 @@ let AsyncBuilderAsAsyncCTATest() =
   do r.NextBytes data
   use ms = new MemoryStream()
   let computation = async {
-      do! ms.WriteAsync(data, 0, data.Length).ConfigureAwait(false)
+      do! ms.WriteAsync(data, 0, data.Length).Configure(false)
     }
   do computation |> Async.RunSynchronously  // FSUnit not supported Async/Task based tests, so run synchronously here. 
   ms.ToArray() |> should equal data
@@ -78,18 +78,9 @@ let AsyncBuilderAsAsyncCTATTest() =
       use ms = new MemoryStream()
       do ms.Write(data, 0, data.Length)
       do ms.Position <- 0L
-      let! length = ms.ReadAsync(data, 0, data.Length).ConfigureAwait(false)
+      let! length = ms.ReadAsync(data, 0, data.Length).Configure(false)
       do length |> should equal data.Length
       return ms.ToArray()
     }
   let results = computation |> Async.RunSynchronously  // FSUnit not supported Async/Task based tests, so run synchronously here. 
   results |> should equal data
-    
-[<Test>]
-let AsyncBuilderAsAsyncYATest() =
-  let computation = async {
-      do! TaskEx.Yield()
-      return 123
-    }
-  let results = computation |> Async.RunSynchronously  // FSUnit not supported Async/Task based tests, so run synchronously here. 
-  results |> should equal 123

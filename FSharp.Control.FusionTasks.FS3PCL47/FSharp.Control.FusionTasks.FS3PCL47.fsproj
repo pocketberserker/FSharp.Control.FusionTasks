@@ -43,6 +43,7 @@
     <Compile Include="..\CommonAssemblyInfo.fs">
       <Link>CommonAssemblyInfo.fs</Link>
     </Compile>
+    <Compile Include="Awaiters.fs" />
     <Compile Include="AsyncExtensions.fs" />
     <Compile Include="TaskExtensions.fs" />
     <None Include="packages.config" />

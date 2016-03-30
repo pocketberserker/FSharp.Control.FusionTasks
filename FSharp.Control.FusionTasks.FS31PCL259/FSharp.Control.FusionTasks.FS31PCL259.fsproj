@@ -25,7 +25,7 @@
     <Optimize>false</Optimize>
     <Tailcalls>false</Tailcalls>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;PCL47</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;PCL259</DefineConstants>
     <WarningLevel>3</WarningLevel>
     <DocumentationFile>bin\Debug\FSharp.Control.FusionTasks.XML</DocumentationFile>
   </PropertyGroup>
@@ -34,7 +34,7 @@
     <Optimize>true</Optimize>
     <Tailcalls>true</Tailcalls>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;PCL47</DefineConstants>
+    <DefineConstants>TRACE;PCL259</DefineConstants>
     <WarningLevel>3</WarningLevel>
     <DocumentationFile>bin\Release\FSharp.Control.FusionTasks.XML</DocumentationFile>
   </PropertyGroup>
@@ -58,6 +58,9 @@
   <ItemGroup>
     <Compile Include="..\CommonAssemblyInfo.fs">
       <Link>CommonAssemblyInfo.fs</Link>
+    </Compile>
+    <Compile Include="..\FSharp.Control.FusionTasks.FS3PCL47\Awaiters.fs">
+      <Link>Awaiters.fs</Link>
     </Compile>
     <Compile Include="..\FSharp.Control.FusionTasks.FS3PCL47\AsyncExtensions.fs">
       <Link>AsyncExtensions.fs</Link>
