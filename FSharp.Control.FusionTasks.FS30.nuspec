@@ -36,8 +36,8 @@
 		<file src="FSharp.Control.FusionTasks.FS3NET4/bin/$Configuration$/FSharp.Control.FusionTasks.dll" target="lib/net40-Client" />
 		<file src="FSharp.Control.FusionTasks.FS3NET4/bin/$Configuration$/FSharp.Control.FusionTasks.pdb" target="lib/net40-Client" />
 		<file src="FSharp.Control.FusionTasks.FS3NET4/bin/$Configuration$/FSharp.Control.FusionTasks.xml" target="lib/net40-Client" />
-		<file src="FSharp.Control.FusionTasks.FS3PCL47/bin/$Configuration$/FSharp.Control.FusionTasks.dll" target="lib/portable-net45+sl50+win+MonoAndroid10+xamarinios10+MonoTouch10" />
-		<file src="FSharp.Control.FusionTasks.FS3PCL47/bin/$Configuration$/FSharp.Control.FusionTasks.pdb" target="lib/portable-net45+sl50+win+MonoAndroid10+xamarinios10+MonoTouch10" />
-		<file src="FSharp.Control.FusionTasks.FS3PCL47/bin/$Configuration$/FSharp.Control.FusionTasks.xml" target="lib/portable-net45+sl50+win+MonoAndroid10+xamarinios10+MonoTouch10" />
+		<file src="FSharp.Control.FusionTasks.FS3PCL47/bin/$Configuration$/FSharp.Control.FusionTasks.dll" target="lib/portable-net40+sl50+win+MonoAndroid10+MonoTouch10" />
+		<file src="FSharp.Control.FusionTasks.FS3PCL47/bin/$Configuration$/FSharp.Control.FusionTasks.pdb" target="lib/portable-net40+sl50+win+MonoAndroid10+MonoTouch10" />
+		<file src="FSharp.Control.FusionTasks.FS3PCL47/bin/$Configuration$/FSharp.Control.FusionTasks.xml" target="lib/portable-net40+sl50+win+MonoAndroid10+MonoTouch10" />
 	</files>
 </package>

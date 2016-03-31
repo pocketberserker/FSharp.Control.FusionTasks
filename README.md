@@ -71,11 +71,11 @@ public static async Task AsyncTAwaitableTest(FSharpAsync<int> asy)
 
 ## Benefits
 * Easy interoperability, combination and relation standard .NET OSS packages using Task and F#'s Async.
-* F# 2.0, 3.0, 3.1 and 4.0 with .NET 4.0/4.5 include PCL Profile 47/259.
+* F# 2.0, 3.0, 3.1 and 4.0 with .NET 4.0/4.5 include PCL Profile 47/78/259.
 
 ## Environments
 * .NET Framework 4.0/4.5
-* .NET Framework Portable class library (Profile47 or Profile259)
+* .NET Framework Portable class library (Profile 47/78/259)
 * F# 2.0, 3.0, 3.1, 4.0 (NuGet package separated, choose)
 
 ## How to use
@@ -92,6 +92,15 @@ public static async Task AsyncTAwaitableTest(FSharpAsync<int> asy)
 * Under Apache v2
 
 ## History
+* 0.5.6:
+  * Add PCL Profile 78.
+  * Fixed minor PCL moniker fragments.
+* 0.5.5:
+  * Fixed version number.
+  * Fixed icon image url.
+* 0.5.4:
+  * Auto open FSharp.Control.
+  * Manage AppVeyor CI.
 * 0.5.3: Implement awaiter classes.
 * 0.5.2: Add dependency assemblies.
 * 0.5.1: NuGet package support.
