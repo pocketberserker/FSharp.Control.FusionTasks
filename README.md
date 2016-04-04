@@ -92,6 +92,8 @@ public static async Task AsyncTAwaitableTest(FSharpAsync<int> asy)
 * Under Apache v2
 
 ## History
+* 0.5.7:
+  * Add PCL Profile 7.
 * 0.5.6:
   * Add PCL Profile 78.
   * Fixed minor PCL moniker fragments.
