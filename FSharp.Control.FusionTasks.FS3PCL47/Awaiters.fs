@@ -23,14 +23,10 @@ open System
 open System.Threading
 open System.Threading.Tasks
 
-#if PCL7
-open Microsoft.Runtime.CompilerServices
-#else
 #if PCL47
 open Microsoft.Runtime.CompilerServices
 #else
 open System.Runtime.CompilerServices
-#endif
 #endif
 
 // Provide Awaitable/Awaiter on custom codes:

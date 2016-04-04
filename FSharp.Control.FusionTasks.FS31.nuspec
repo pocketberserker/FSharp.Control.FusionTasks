@@ -39,6 +39,9 @@
         <file src="FSharp.Control.FusionTasks.FS31PCL47/bin/$Configuration$/FSharp.Control.FusionTasks.dll" target="lib/portable-net40+sl50+win+MonoAndroid10+MonoTouch10" />
         <file src="FSharp.Control.FusionTasks.FS31PCL47/bin/$Configuration$/FSharp.Control.FusionTasks.pdb" target="lib/portable-net40+sl50+win+MonoAndroid10+MonoTouch10" />
         <file src="FSharp.Control.FusionTasks.FS31PCL47/bin/$Configuration$/FSharp.Control.FusionTasks.xml" target="lib/portable-net40+sl50+win+MonoAndroid10+MonoTouch10" />
+        <file src="FSharp.Control.FusionTasks.FS31PCL7/bin/$Configuration$/FSharp.Control.FusionTasks.dll" target="lib/portable-net45+netcore45+MonoAndroid10+MonoTouch10" />
+        <file src="FSharp.Control.FusionTasks.FS31PCL7/bin/$Configuration$/FSharp.Control.FusionTasks.pdb" target="lib/portable-net45+netcore45+MonoAndroid10+MonoTouch10" />
+        <file src="FSharp.Control.FusionTasks.FS31PCL7/bin/$Configuration$/FSharp.Control.FusionTasks.xml" target="lib/portable-net45+netcore45+MonoAndroid10+MonoTouch10" />
         <file src="FSharp.Control.FusionTasks.FS31PCL78/bin/$Configuration$/FSharp.Control.FusionTasks.dll" target="lib/portable-net45+netcore45+wp80+MonoAndroid10+MonoTouch10" />
         <file src="FSharp.Control.FusionTasks.FS31PCL78/bin/$Configuration$/FSharp.Control.FusionTasks.pdb" target="lib/portable-net45+netcore45+wp80+MonoAndroid10+MonoTouch10" />
         <file src="FSharp.Control.FusionTasks.FS31PCL78/bin/$Configuration$/FSharp.Control.FusionTasks.xml" target="lib/portable-net45+netcore45+wp80+MonoAndroid10+MonoTouch10" />
