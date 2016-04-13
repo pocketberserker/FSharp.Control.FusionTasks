@@ -63,6 +63,12 @@
     <Compile Include="..\FSharp.Control.FusionTasks.FS3PCL47\Awaiters.fs">
       <Link>Awaiters.fs</Link>
     </Compile>
+    <Compile Include="..\FSharp.Control.FusionTasks.FS3PCL47\Infrastructures.fs">
+      <Link>Infrastructures.fs</Link>
+    </Compile>
+    <Compile Include="..\FSharp.Control.FusionTasks.FS3PCL47\Synchronizers.fs">
+      <Link>Synchronizers.fs</Link>
+    </Compile>
     <Compile Include="..\FSharp.Control.FusionTasks.FS3PCL47\AsyncExtensions.fs">
       <Link>AsyncExtensions.fs</Link>
     </Compile>
@@ -76,6 +82,8 @@
     <Reference Include="FSharp.Core, Version=$(TargetFSharpCoreVersion), Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <Private>True</Private>
     </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
     <Reference Include="System.Numerics" />
   </ItemGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

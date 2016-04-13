@@ -17,12 +17,12 @@
 //
 /////////////////////////////////////////////////////////////////////////////////////////////////
 
+///////////////////////////////////////////////////////////////////////////////////
+
 namespace System.Threading.Tasks
 
-open System
 open System.Runtime.CompilerServices
 open System.Threading
-open System.Threading.Tasks
 open Microsoft.FSharp.Control
 
 /// <summary>
@@ -43,7 +43,7 @@ type TaskExtensions =
   /// <returns>F# Async (FSharpAsync&lt;Unit&gt;)</returns>
   [<Extension>]
   static member AsAsync (task: Task) =
-    AsyncExtensions.asAsync (task, None)
+    Infrastructures.asAsync (task, None)
 
   /// <summary>
   /// Seamless conversion from .NET Task to F# Async.
@@ -53,7 +53,7 @@ type TaskExtensions =
   /// <returns>F# Async (FSharpAsync&lt;Unit&gt;)</returns>
   [<Extension>]
   static member AsAsync (task: Task, token: CancellationToken) =
-    AsyncExtensions.asAsync (task, Some token)
+    Infrastructures.asAsync (task, Some token)
 
   /// <summary>
   /// Seamless conversion from .NET Task to F# Async.
@@ -63,7 +63,7 @@ type TaskExtensions =
   /// <returns>F# Async (FSharpAsync&lt;Unit&gt;)</returns>
   [<Extension>]
   static member AsAsyncConfigured (task: Task, continueOnCapturedContext: bool) =
-    AsyncExtensions.asAsyncCTA (ConfiguredAsyncAwaitable(task.ConfigureAwait(continueOnCapturedContext)))
+    Infrastructures.asAsyncCTA (ConfiguredAsyncAwaitable(task.ConfigureAwait(continueOnCapturedContext)))
 
   /// <summary>
   /// Seamless conversion from .NET Task to F# Async.
@@ -73,7 +73,7 @@ type TaskExtensions =
   /// <returns>F# Async&lt;'T&gt; (FSharpAsync&lt;'T&gt;)</returns>
   [<Extension>]
   static member AsAsync (task: Task<'T>) =
-    AsyncExtensions.asAsyncT (task, None)
+    Infrastructures.asAsyncT (task, None)
 
   /// <summary>
   /// Seamless conversion from .NET Task to F# Async.
@@ -84,7 +84,7 @@ type TaskExtensions =
   /// <returns>F# Async&lt;'T&gt; (FSharpAsync&lt;'T&gt;)</returns>
   [<Extension>]
   static member AsAsync (task: Task<'T>, token: CancellationToken) =
-    AsyncExtensions.asAsyncT (task, Some token)
+    Infrastructures.asAsyncT (task, Some token)
 
   /// <summary>
   /// Seamless conversion from .NET Task to F# Async.
@@ -95,7 +95,24 @@ type TaskExtensions =
   /// <returns>F# Async&lt;'T&gt; (FSharpAsync&lt;'T&gt;)</returns>
   [<Extension>]
   static member AsAsyncConfigured (task: Task<'T>, continueOnCapturedContext: bool) =
-    AsyncExtensions.asAsyncCTAT (ConfiguredAsyncAwaitable<'T>(task.ConfigureAwait(continueOnCapturedContext)))
+    Infrastructures.asAsyncCTAT (ConfiguredAsyncAwaitable<'T>(task.ConfigureAwait(continueOnCapturedContext)))
+
+
+///////////////////////////////////////////////////////////////////////////////////
+
+namespace Microsoft.FSharp.Control
+
+open System.Runtime.CompilerServices
+open System.Threading
+open System.Threading.Tasks
+
+/// <summary>
+/// Seamless conversion extensions in standard .NET Task based infrastructure.
+/// </summary>
+[<Extension>]
+[<Sealed>]
+[<AbstractClass>]
+type AsyncExtensions =
 
   ///////////////////////////////////////////////////////////////////////////////////
   // .NET (C#) side Async --> Task conversion extensions.
@@ -107,7 +124,7 @@ type TaskExtensions =
   /// <returns>.NET Task</returns>
   [<Extension>]
   static member AsTask (async: Async<unit>) =
-    AsyncExtensions.asTask (async, None) :> Task
+    Infrastructures.asTask (async, None) :> Task
 
   /// <summary>
   /// Seamless conversion from F# Async to .NET Task.
@@ -117,7 +134,7 @@ type TaskExtensions =
   /// <returns>.NET Task</returns>
   [<Extension>]
   static member AsTask (async: Async<unit>, token: CancellationToken) =
-    AsyncExtensions.asTask (async, Some token) :> Task
+    Infrastructures.asTask (async, Some token) :> Task
 
   /// <summary>
   /// Seamless conversion from F# Async to .NET Task.
@@ -127,7 +144,7 @@ type TaskExtensions =
   /// <returns>.NET Task&lt;'T&gt;</returns>
   [<Extension>]
   static member AsTask (async: Async<'T>) =
-    AsyncExtensions.asTask (async, None)
+    Infrastructures.asTask (async, None)
 
   /// <summary>
   /// Seamless conversion from F# Async to .NET Task.
@@ -138,7 +155,7 @@ type TaskExtensions =
   /// <returns>.NET Task&lt;'T&gt;</returns>
   [<Extension>]
   static member AsTask (async: Async<'T>, token: CancellationToken) =
-    AsyncExtensions.asTask (async, Some token)
+    Infrastructures.asTask (async, Some token)
 
   ///////////////////////////////////////////////////////////////////////////////////
   // .NET (C#) side Async configurable extensions.
@@ -151,7 +168,7 @@ type TaskExtensions =
   /// <returns>.NET TaskAwaiter</returns>
   [<Extension>]
   static member ConfigureAwait (async: Async<unit>, continueOnCapturedContext: bool) =
-    let task = AsyncExtensions.asTask (async, None) :> Task
+    let task = Infrastructures.asTask (async, None) :> Task
     ConfiguredAsyncAwaitable(task.ConfigureAwait(continueOnCapturedContext))
 
   /// <summary>
@@ -163,7 +180,7 @@ type TaskExtensions =
   /// <returns>.NET TaskAwaiter&lt;'T&gt;</returns>
   [<Extension>]
   static member ConfigureAwait (async: Async<'T>, continueOnCapturedContext: bool) =
-    let task = AsyncExtensions.asTask (async, None)
+    let task = Infrastructures.asTask (async, None)
     ConfiguredAsyncAwaitable<'T>(task.ConfigureAwait(continueOnCapturedContext))
 
   ///////////////////////////////////////////////////////////////////////////////////
@@ -176,7 +193,7 @@ type TaskExtensions =
   /// <returns>.NET TaskAwaiter</returns>
   [<Extension>]
   static member GetAwaiter (async: Async<unit>) =
-    let task = AsyncExtensions.asTask (async, None) :> Task
+    let task = Infrastructures.asTask (async, None) :> Task
     AsyncAwaiter(task.GetAwaiter())
 
   /// <summary>
@@ -187,5 +204,29 @@ type TaskExtensions =
   /// <returns>.NET TaskAwaiter&lt;'T&gt;</returns>
   [<Extension>]
   static member GetAwaiter (async: Async<'T>) =
-    let task = AsyncExtensions.asTask (async, None)
+    let task = Infrastructures.asTask (async, None)
     AsyncAwaiter<'T>(task.GetAwaiter())
+   
+  ///////////////////////////////////////////////////////////////////////////////////
+  // .NET (C#) side synchronizer extensions.
+
+  /// <summary>
+  /// Try asyncronos lock. (For .NET native)
+  /// </summary>
+  /// <returns>
+  /// Unlockable awaitable task.
+  /// </returns>
+  [<Extension>]
+  static member LockAsync(asyncLock: AsyncLock) =
+    asyncLock.lockAsync()
+
+  /// <summary>
+  /// Try asyncronos lock. (For .NET native)
+  /// </summary>
+  /// <param name="token">Cancellation token</param>
+  /// <returns>
+  /// Unlockable awaitable task.
+  /// </returns>
+  [<Extension>]
+  static member LockAsync(asyncLock: AsyncLock, token: CancellationToken) =
+    asyncLock.lockAsync(token)

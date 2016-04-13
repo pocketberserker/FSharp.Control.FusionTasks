@@ -25,76 +25,8 @@ open System.Threading
 open System.Threading.Tasks
 
 [<AutoOpen>]
+[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module AsyncExtensions =
-
-  ///////////////////////////////////////////////////////////////////////////////////
-  // Internal implementations.
-
-  let private (|IsFaulted|IsCanceled|IsCompleted|) (task: Task) =
-    if task.IsFaulted then IsFaulted task.Exception
-    else if task.IsCanceled then IsCanceled
-    else IsCompleted
-
-  let private safeToken (ct: CancellationToken option) =
-    match ct with
-    | Some token -> token
-    | None -> Async.DefaultCancellationToken
-
-  let internal asTask(async: Async<'T>, ct: CancellationToken option) =
-    let tcs = TaskCompletionSource<'T>()
-    Async.StartWithContinuations(
-      async,
-      tcs.SetResult,
-      tcs.SetException,
-      tcs.SetException, // Derived from original OperationCancelledException
-      safeToken ct)
-    tcs.Task
-
-  let internal asAsync(task: Task, ct: CancellationToken option) =
-    Async.FromContinuations(
-      fun (completed, caught, canceled) ->
-        task.ContinueWith(
-          new Action<Task>(fun _ ->
-            match task with  
-            | IsFaulted exn -> caught(exn)
-            | IsCanceled -> canceled(OperationCanceledException()) // TODO: how to extract implicit caught exceptions from task?
-            | IsCompleted -> completed(())),
-          safeToken ct)
-        |> ignore)
-
-  let internal asAsyncT(task: Task<'T>, ct: CancellationToken option) =
-    Async.FromContinuations(
-      fun (completed, caught, canceled) ->
-        task.ContinueWith(
-          new Action<Task<'T>>(fun _ ->
-            match task with  
-            | IsFaulted exn -> caught(exn)
-            | IsCanceled -> canceled(OperationCanceledException()) // TODO: how to extract implicit caught exceptions from task?
-            | IsCompleted -> completed(task.Result)),
-          safeToken ct)
-        |> ignore)
-
-  let internal asAsyncCTA(cta: ConfiguredAsyncAwaitable) =
-    Async.FromContinuations(
-      fun (completed, caught, canceled) ->
-        let awaiter = cta.GetAwaiter()
-        awaiter.OnCompleted(
-          new Action(fun _ ->
-            try
-              awaiter.GetResult()
-              completed()
-            with exn -> caught(exn)))
-        |> ignore)
-
-  let internal asAsyncCTAT(cta: ConfiguredAsyncAwaitable<'T>) =
-    Async.FromContinuations(
-      fun (completed, caught, canceled) ->
-        let awaiter = cta.GetAwaiter()
-        awaiter.OnCompleted(
-          new Action(fun _ ->
-            try completed(awaiter.GetResult())
-            with exn -> caught(exn)))
-        |> ignore)
 
   ///////////////////////////////////////////////////////////////////////////////////
   // F# side Async class extensions.
@@ -107,7 +39,8 @@ module AsyncExtensions =
     /// <param name="async">F# Async</param>
     /// <param name="token">Cancellation token (optional)</param>
     /// <returns>.NET Task</returns>
-    static member AsTask(async: Async<unit>, ?token: CancellationToken) = asTask(async, token) :> Task
+    static member AsTask(async: Async<unit>, ?token: CancellationToken) =
+      Infrastructures.asTask(async, token) :> Task
 
     /// <summary>
     /// Seamless conversion from F# Async to .NET Task.
@@ -116,15 +49,33 @@ module AsyncExtensions =
     /// <param name="async">F# Async</param>
     /// <param name="token">Cancellation token (optional)</param>
     /// <returns>.NET Task</returns>
-    static member AsTask(async: Async<'T>, ?token: CancellationToken) = asTask(async, token)
+    static member AsTask(async: Async<'T>, ?token: CancellationToken) =
+      Infrastructures.asTask(async, token)
 
+  ///////////////////////////////////////////////////////////////////////////////////
+  // F# side Task class extensions.
+
+  type Task with
+  
     /// <summary>
     /// Seamless conversion from .NET Task to F# Async.
     /// </summary>
     /// <param name="task">.NET Task</param>
     /// <param name="token">Cancellation token (optional)</param>
     /// <returns>F# Async</returns>
-    static member AsAsync(task: Task, ?token: CancellationToken) = asAsync(task, token)
+    member task.AsAsync(?token: CancellationToken) =
+      Infrastructures.asAsync(task, token)
+
+    /// <summary>
+    /// Seamless conversionable substitution Task.ConfigureAwait()
+    /// </summary>
+    /// <param name="task">.NET Task</param>
+    /// <param name="continueOnCapturedContext">True if continuation running on captured SynchronizationContext</param>
+    /// <returns>ConfiguredAsyncAwaitable</returns>
+    member task.AsyncConfigure(continueOnCapturedContext: bool) =
+      ConfiguredAsyncAwaitable(task.ConfigureAwait(continueOnCapturedContext))
+
+  type Task<'T> with
 
     /// <summary>
     /// Seamless conversion from .NET Task to F# Async.
@@ -133,14 +84,32 @@ module AsyncExtensions =
     /// <param name="task">.NET Task</param>
     /// <param name="token">Cancellation token (optional)</param>
     /// <returns>F# Async</returns>
-    static member AsAsync(task: Task<'T>, ?token: CancellationToken) = asAsyncT(task, token)
+    member task.AsAsync(?token: CancellationToken) =
+      Infrastructures.asAsyncT(task, token)
 
+    /// <summary>
+    /// Seamless conversionable substitution Task.ConfigureAwait()
+    /// </summary>
+    /// <param name="task">.NET Task&lt;'T&gt;</param>
+    /// <param name="continueOnCapturedContext">True if continuation running on captured SynchronizationContext</param>
+    /// <returns>ConfiguredAsyncAwaitable</returns>
+    member task.AsyncConfigure(continueOnCapturedContext: bool) =
+      ConfiguredAsyncAwaitable<'T>(task.ConfigureAwait(continueOnCapturedContext))
+  
+  ///////////////////////////////////////////////////////////////////////////////////
+  // F# side ConfiguredAsyncAwaitable class extensions.
+
+  type ConfiguredAsyncAwaitable with
+  
     /// <summary>
     /// Seamless conversion from .NET Task to F# Async.
     /// </summary>
     /// <param name="cta">.NET ConfiguredTaskAwaitable (expr.ConfigureAwait(...))</param>
     /// <returns>F# Async</returns>
-    static member AsAsync(cta: ConfiguredAsyncAwaitable) = asAsyncCTA(cta)
+    member cta.AsAsync() =
+      Infrastructures.asAsyncCTA(cta)
+ 
+  type ConfiguredAsyncAwaitable<'T> with
 
     /// <summary>
     /// Seamless conversion from .NET Task to F# Async.
@@ -148,8 +117,9 @@ module AsyncExtensions =
     /// <typeparam name="'T">Computation result type</typeparam> 
     /// <param name="cta">.NET ConfiguredTaskAwaitable (expr.ConfigureAwait(...))</param>
     /// <returns>F# Async</returns>
-    static member AsAsync(cta: ConfiguredAsyncAwaitable<'T>) = asAsyncCTAT(cta)
-
+    member cta.AsAsync() =
+      Infrastructures.asAsyncCTAT(cta)
+  
   ///////////////////////////////////////////////////////////////////////////////////
   // F# side async computation builder extensions.
 
@@ -160,7 +130,8 @@ module AsyncExtensions =
     /// </summary>
     /// <param name="expr">.NET Task (expression result)</param>
     /// <returns>F# Async</returns>
-    member __.Source(expr: Task) = asAsync(expr, None)
+    member __.Source(expr: Task) =
+      Infrastructures.asAsync(expr, None)
 
     /// <summary>
     /// Seamless conversion from .NET Task to F# Async in Async workflow.
@@ -168,14 +139,16 @@ module AsyncExtensions =
     /// <typeparam name="'T">Computation result type</typeparam> 
     /// <param name="expr">.NET Task (expression result)</param>
     /// <returns>F# Async</returns>
-    member __.Source(expr: Task<'T>) = asAsyncT(expr, None)
+    member __.Source(expr: Task<'T>) =
+      Infrastructures.asAsyncT(expr, None)
 
     /// <summary>
     /// Seamless conversion from .NET Task to F# Async in Async workflow.
     /// </summary>
     /// <param name="cta">.NET ConfiguredTaskAwaitable (expr.ConfigureAwait(...))</param>
     /// <returns>F# Async</returns>
-    member __.Source(cta: ConfiguredAsyncAwaitable) = asAsyncCTA(cta)
+    member __.Source(cta: ConfiguredAsyncAwaitable) =
+      Infrastructures.asAsyncCTA(cta)
 
     /// <summary>
     /// Seamless conversion from .NET Task to F# Async in Async workflow.
@@ -183,29 +156,40 @@ module AsyncExtensions =
     /// <typeparam name="'T">Computation result type</typeparam> 
     /// <param name="cta">.NET ConfiguredTaskAwaitable (expr.ConfigureAwait(...))</param>
     /// <returns>F# Async</returns>
-    member __.Source(cta: ConfiguredAsyncAwaitable<'T>) = asAsyncCTAT(cta)
+    member __.Source(cta: ConfiguredAsyncAwaitable<'T>) =
+      Infrastructures.asAsyncCTAT(cta)
 
   ///////////////////////////////////////////////////////////////////////////////////
-  // F# side Task class extensions.
+  // F# side synchronizer extensions.
 
-  type Task with
-
-    /// <summary>
-    /// Seamless conversionable substitution Task.ConfigureAwait()
-    /// </summary>
-    /// <param name="task">.NET Task</param>
-    /// <param name="continueOnCapturedContext">True if continuation running on captured SynchronizationContext</param>
-    /// <returns>ConfiguredAsyncAwaitable</returns>
-    member task.Configure(continueOnCapturedContext: bool) =
-        ConfiguredAsyncAwaitable(task.ConfigureAwait(continueOnCapturedContext))
-
-  type Task<'T> with
+  type AsyncLock with
 
     /// <summary>
-    /// Seamless conversionable substitution Task.ConfigureAwait()
+    /// Try asyncronos lock. (For F# native)
     /// </summary>
-    /// <param name="task">.NET Task&lt;'T&gt;</param>
-    /// <param name="continueOnCapturedContext">True if continuation running on captured SynchronizationContext</param>
-    /// <returns>ConfiguredAsyncAwaitable</returns>
-    member task.Configure(continueOnCapturedContext: bool) =
-        ConfiguredAsyncAwaitable<'T>(task.ConfigureAwait(continueOnCapturedContext))
+    /// <returns>
+    /// Async computation.
+    /// </returns>
+    member this.AsyncLock() =
+      this.asyncLock()
+    
+    /// <summary>
+    /// Try asyncronos lock. (For F# native)
+    /// </summary>
+    /// <param name="token">Cancellation token (optional)</param>
+    /// <returns>
+    /// Async computation.
+    /// </returns>
+    member this.AsyncLock(token: CancellationToken) =
+      this.asyncLock(token)
+
+  type AsyncLazy<'T> with
+
+    /// <summary>
+    /// Get or generate instance asynchronosly.
+    /// </summary>
+    /// <returns>
+    /// 'T instance.
+    /// </returns>
+    member this.AsyncGetValue() =
+      this.asyncGetValue()

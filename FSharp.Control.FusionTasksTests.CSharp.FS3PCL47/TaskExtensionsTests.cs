@@ -20,6 +20,7 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.FSharp.Control;
 using Microsoft.FSharp.Core;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -42,7 +43,7 @@ namespace FSharp.Control.FusionTasksTests
 			var asy = task.AsAsync();
 
 			// MSTest not supported FSharpAsync based tests, so run synchronously here. 
-			Microsoft.FSharp.Control.FSharpAsync.RunSynchronously(asy, FSharpOption<int>.None, FSharpOption<CancellationToken>.None);
+			FSharpAsync.RunSynchronously(asy, FSharpOption<int>.None, FSharpOption<CancellationToken>.None);
 		}
 
 		[TestMethod]
@@ -52,7 +53,7 @@ namespace FSharp.Control.FusionTasksTests
 			var asy = task.AsAsyncConfigured(false);
 
 			// MSTest not supported FSharpAsync based tests, so run synchronously here. 
-			Microsoft.FSharp.Control.FSharpAsync.RunSynchronously(asy, FSharpOption<int>.None, FSharpOption<CancellationToken>.None);
+			FSharpAsync.RunSynchronously(asy, FSharpOption<int>.None, FSharpOption<CancellationToken>.None);
 		}
 
 		private static async Task<int> DelayAndReturnAsync()
@@ -68,7 +69,7 @@ namespace FSharp.Control.FusionTasksTests
 			var asy = task.AsAsync();
 
 			// MSTest not supported FSharpAsync based tests, so run synchronously here. 
-			var result = Microsoft.FSharp.Control.FSharpAsync.RunSynchronously(asy, FSharpOption<int>.None, FSharpOption<CancellationToken>.None);
+			var result = FSharpAsync.RunSynchronously(asy, FSharpOption<int>.None, FSharpOption<CancellationToken>.None);
 			Assert.AreEqual(123, result);
 		}
 
@@ -79,7 +80,7 @@ namespace FSharp.Control.FusionTasksTests
 			var asy = task.AsAsyncConfigured(false);
 
 			// MSTest not supported FSharpAsync based tests, so run synchronously here. 
-			var result = Microsoft.FSharp.Control.FSharpAsync.RunSynchronously(asy, FSharpOption<int>.None, FSharpOption<CancellationToken>.None);
+			var result = FSharpAsync.RunSynchronously(asy, FSharpOption<int>.None, FSharpOption<CancellationToken>.None);
 			Assert.AreEqual(123, result);
 		}
 		#endregion
@@ -88,7 +89,7 @@ namespace FSharp.Control.FusionTasksTests
 		[TestMethod]
 		public async Task AsyncAsTaskTestAsync()
 		{
-			var asy = Microsoft.FSharp.Control.FSharpAsync.Sleep(500);
+			var asy = FSharpAsync.Sleep(500);
 			await asy.AsTask();
 		}
 
@@ -109,7 +110,7 @@ namespace FSharp.Control.FusionTasksTests
 		{
 			var cts = new CancellationTokenSource();
 
-			var asy = Microsoft.FSharp.Control.FSharpAsync.Sleep(500);
+			var asy = FSharpAsync.Sleep(500);
 			var outerTask = asy.AsTask(cts.Token);
 
 			// Force hard wait.
@@ -164,7 +165,7 @@ namespace FSharp.Control.FusionTasksTests
 		[TestMethod]
 		public async Task AsyncGetAwaiterTestAsync()
 		{
-			var asy = Microsoft.FSharp.Control.FSharpAsync.Sleep(500);
+			var asy = FSharpAsync.Sleep(500);
 			await asy;
 		}
 
