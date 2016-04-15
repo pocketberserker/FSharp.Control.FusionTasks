@@ -7,6 +7,7 @@
 * NuGet Package (F# 3.1): [![NuGet FusionTasks (F# 3.1)](https://img.shields.io/nuget/v/FSharp.Control.FusionTasks.FS31.svg?style=flat)](https://www.nuget.org/packages/FSharp.Control.FusionTasks.FS31)
 * NuGet Package (F# 4.0): [![NuGet FusionTasks (F# 4.0)](https://img.shields.io/nuget/v/FSharp.Control.FusionTasks.FS40.svg?style=flat)](https://www.nuget.org/packages/FSharp.Control.FusionTasks.FS40)
 * Continuous integration: [![AppVeyor FusionTasks](https://img.shields.io/appveyor/ci/kekyo/fsharp-control-fusiontasks.svg?style=flat)](https://ci.appveyor.com/project/kekyo/fsharp-control-fusiontasks)
+* Gitter: [![Gitter FusionTasks](https://badges.gitter.im/kekyo/FSharp.Control.FusionTasks.svg)](https://gitter.im/kekyo/FSharp.Control.FusionTasks?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ## What is this?
 * F# Async computation <--> .NET Task easy seamless interoperability library.
