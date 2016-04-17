@@ -84,6 +84,9 @@ public static async Task AsyncTAwaitableTest(FSharpAsync<int> asy)
 * F# use, autoopen'd namespace "FSharp.Control". "System.Threading.Tasks" is optional.
 * C# use, using namespace "System.Threading.Tasks". "Microsoft.FSharp.Control" is optional.
 
+## Additional resources
+* The "Continuation Passing Style" basics and provide seamless interoperability .NET Task and F# Async workflow implicit conversion technics. "NLNagoya 2016" conference session slides. (Composed blog post, sorry Japanese only) http://www.kekyo.net/2016/04/17/5804
+
 ## TODO
 * Improvements PCL Profiles.
 * Improvements more easier/effective interfaces.
