@@ -72,11 +72,11 @@ public static async Task AsyncTAwaitableTest(FSharpAsync<int> asy)
 
 ## Benefits
 * Easy interoperability, combination and relation standard .NET OSS packages using Task and F#'s Async.
-* F# 2.0, 3.0, 3.1 and 4.0 with .NET 4.0/4.5 include PCL Profile 47/78/259.
+* F# 2.0, 3.0, 3.1 and 4.0 with .NET 4.0/4.5 include PCL Profile 7/47/78/259.
 
 ## Environments
 * .NET Framework 4.0/4.5
-* .NET Framework Portable class library (Profile 47/78/259)
+* .NET Framework Portable class library (Profile 7/47/78/259)
 * F# 2.0, 3.0, 3.1, 4.0 (NuGet package separated, choose)
 
 ## How to use
@@ -85,17 +85,19 @@ public static async Task AsyncTAwaitableTest(FSharpAsync<int> asy)
 * C# use, using namespace "System.Threading.Tasks". "Microsoft.FSharp.Control" is optional.
 
 ## Additional resources
+* Source codes available only FSharp.Control.FusionTasks.FS3PCL47 project.
 * The "Continuation Passing Style" basics and provide seamless interoperability .NET Task and F# Async workflow implicit conversion technics. "NLNagoya 2016" conference session slides. (Composed blog post, sorry Japanese only) http://www.kekyo.net/2016/04/17/5804
 
 ## TODO
-* Improvements PCL Profiles.
 * Improvements more easier/effective interfaces.
 
 ## License
 * Copyright (c) 2016 Kouji Matsui
-* Under Apache v2
+* Under Apache v2 http://www.apache.org/licenses/LICENSE-2.0
 
 ## History
+* 0.5.8:
+  * Add strongly-signed.
 * 0.5.7:
   * Add PCL Profile 7.
 * 0.5.6:

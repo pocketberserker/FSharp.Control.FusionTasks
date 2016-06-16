@@ -37,6 +37,10 @@
     <DocumentationFile>bin\Release\FSharp.Control.FusionTasks.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\FSharp.Control.FusionTasks.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
   </PropertyGroup>
   <Choose>
