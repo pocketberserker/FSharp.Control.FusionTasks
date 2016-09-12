@@ -79,6 +79,8 @@ public async Task AsyncTest(FSharpAsync<int> asyncIntComp)
 * Under Apache v2 http://www.apache.org/licenses/LICENSE-2.0
 
 ## History
+* 0.9.3:
+  * Fixed nuspec frameworkAssemblies.
 * 0.9.2:
   * Add package targetFramework.
   * Updated RelaxVersioner.
