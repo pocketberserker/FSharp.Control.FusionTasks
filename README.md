@@ -1,4 +1,4 @@
-# FusionTasks
+# F# FusionTasks
 ![FusionTasks](https://raw.githubusercontent.com/kekyo/FSharp.Control.FusionTasks/master/Images/FSharp.Control.FusionTasks.128.png)
 
 ## Status
@@ -53,12 +53,11 @@ public async Task AsyncTest(FSharpAsync<int> asyncIntComp)
 
 ## Benefits
 * Easy interoperability, combination and relation standard .NET OSS packages using Task and F#'s Async.
-* F# 2.0, 3.0, 3.1 and 4.0 with .NET 4.0/4.5/.NET Core 1.0 include PCL Profile 7/47/78/259.
-* Ready for LINQPad 5.
+* F# 2.0, 3.0, 3.1 and 4.0 with .NET 4.0/4.5 include PCL Profile 7/47/78/259.
+* Ready to LINQPad 5.
 
 ## Environments
 * .NET Framework 4.0/4.5
-* .NET Core 1.0 (Only F# 4.0, FSharp.Core.netcore.alpha-160627)
 * .NET Framework Portable class library (Profile 7/47/78/259)
 * F# 2.0, 3.0, 3.1, 4.0 (NuGet package separated, choose one)
 
@@ -67,11 +66,71 @@ public async Task AsyncTest(FSharpAsync<int> asyncIntComp)
 * F# use, autoopen'd namespace "FSharp.Control". "System.Threading.Tasks" is optional.
 * C# use, using namespace "System.Threading.Tasks". "Microsoft.FSharp.Control" is optional.
 
+## Samples
+### Basic async workflow:
+
+``` fsharp
+let asyncTest = async {
+  use ms = new MemoryStream()
+
+  // FusionTasks directly interpreted System.Threading.Tasks.Task class in F# async-workflow block.
+  // Of course, non-generic Task mapping to Async<unit>.
+  do! ms.WriteAsync(data, 0, data.Length)
+  do ms.Position <- 0L
+
+  // FusionTasks directly interpreted System.Threading.Tasks.Task<T> class in F# async-workflow block.
+  // Standard usage, same as manually used Async.AwaitTask.
+  let! length = ms.ReadAsync(data2, 0, data2.Length)
+  do length |> should equal data2.Length
+}
+```
+
+### Without async workflow:
+
+``` fsharp
+use ms = new MemoryStream()
+
+// Manually conversion by "asAsync" : Task<T> --> Async<'T>
+let asy = ms.WriteAsync(data, 0, data.Length).AsAsync()
+```
+
+### Without async workflow (CancellationToken):
+
+``` fsharp
+use ms = new MemoryStream()
+let cts = new CancellationTokenSource()
+
+// Produce with CancellationToken:
+// TIPS: FusionTasks cannot handle directly CancellationToken IN ASYNC WORKFLOW.
+//   Because async workflow semantics implicitly handled CancellationToken with Async.DefaultCanncelationToken, CacellationToken and CancelDefaultToken().
+//   (CancellationToken derived from Async.StartWithContinuations() in async workflow.)
+let asy = ms.WriteAsync(data, 0, data.Length).AsAsync(cts.Token)
+```
+
+### Handle Task.ConfigureAwait(...)  (Capture/release SynchContext)
+
+``` fsharp
+let asyncTest = async {
+  use ms = new MemoryStream()
+
+  // Task<T> --> ConfiguredAsyncAwaitable<'T> :
+  // Why use AsyncConfigure() insted ConfigureAwait() ?
+  //   Because the "ConfiguredTaskAwaitable<T>" lack declare the TypeForwardedTo attribute in some PCL.
+  //   If use AsyncConfigure(), complete hidden refer ConfiguredTaskAwaitable into FusionTasks assembly,
+  //   avoid strange linking errors.
+  let! length = ms.WriteAsync(data, 0, data.Length).AsyncConfigure(false)
+}
+```
+
+### In C# side:
+* Really need sample codes? huh? :)
+
 ## Additional resources
 * Source codes available only FSharp.Control.FusionTasks.FS3PCL47 project.
 * The "Continuation Passing Style" basics and provide seamless interoperability .NET Task and F# Async workflow implicit conversion technics. "NLNagoya 2016" conference session slides. (Composed blog post, sorry Japanese only) http://www.kekyo.net/2016/04/17/5804
 
 ## TODO
+* Support .NET Core 1.0 (if F# reached RTM.)
 * Improvements more easier/effective interfaces.
 
 ## License
@@ -79,6 +138,11 @@ public async Task AsyncTest(FSharpAsync<int> asyncIntComp)
 * Under Apache v2 http://www.apache.org/licenses/LICENSE-2.0
 
 ## History
+* 1.0.0:
+  * RTM release :clap:
+  * Add FSharp.Core NuGet references.
+  * Temporary disable support .NET Core. If reached F# RTM, continue development... (PR welcome!!)
+  * Add sample codes.
 * 0.9.6:
   * WIP release.
 * 0.9.5:

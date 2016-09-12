@@ -48,7 +48,7 @@
       </group>
       <group targetFramework="dnxcore50">
         <dependency id="Microsoft.CSharp" version="4.0.1" />
-        <!--
+        <!-- TODO: Waiting F# .NET Core 1.0 RTM released...
         <dependency id="Microsoft.FSharp.Core.netcore" version="1.0.0-alpha-160627" />
         -->
       </group>
