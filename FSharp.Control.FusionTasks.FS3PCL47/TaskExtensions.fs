@@ -1,6 +1,6 @@
 ﻿/////////////////////////////////////////////////////////////////////////////////////////////////
 //
-// FSharp.Control.FusionTasks - F# Async computation <--> .NET Task easy seamless interoperability library.
+// FSharp.Control.FusionTasks - F# Async workflow <--> .NET Task easy seamless interoperability library.
 // Copyright (c) 2016 Kouji Matsui (@kekyo2)
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -28,9 +28,7 @@ open Microsoft.FSharp.Control
 /// <summary>
 /// Seamless conversion extensions in standard .NET Task based infrastructure.
 /// </summary>
-[<Extension>]
-[<Sealed>]
-[<AbstractClass>]
+[<Extension; Sealed; AbstractClass; NoEquality; NoComparison; AutoSerializable(false)>]
 type TaskExtensions =
 
   ///////////////////////////////////////////////////////////////////////////////////
@@ -109,9 +107,7 @@ open System.Threading.Tasks
 /// <summary>
 /// Seamless conversion extensions in standard .NET Task based infrastructure.
 /// </summary>
-[<Extension>]
-[<Sealed>]
-[<AbstractClass>]
+[<Extension; Sealed; AbstractClass; NoEquality; NoComparison; AutoSerializable(false)>]
 type AsyncExtensions =
 
   ///////////////////////////////////////////////////////////////////////////////////
@@ -206,27 +202,3 @@ type AsyncExtensions =
   static member GetAwaiter (async: Async<'T>) =
     let task = Infrastructures.asTask (async, None)
     AsyncAwaiter<'T>(task.GetAwaiter())
-   
-  ///////////////////////////////////////////////////////////////////////////////////
-  // .NET (C#) side synchronizer extensions.
-
-  /// <summary>
-  /// Try asyncronos lock. (For .NET native)
-  /// </summary>
-  /// <returns>
-  /// Unlockable awaitable task.
-  /// </returns>
-  [<Extension>]
-  static member LockAsync(asyncLock: AsyncLock) =
-    asyncLock.lockAsync()
-
-  /// <summary>
-  /// Try asyncronos lock. (For .NET native)
-  /// </summary>
-  /// <param name="token">Cancellation token</param>
-  /// <returns>
-  /// Unlockable awaitable task.
-  /// </returns>
-  [<Extension>]
-  static member LockAsync(asyncLock: AsyncLock, token: CancellationToken) =
-    asyncLock.lockAsync(token)

@@ -1,6 +1,6 @@
 ﻿/////////////////////////////////////////////////////////////////////////////////////////////////
 //
-// FSharp.Control.FusionTasks - F# Async computation <--> .NET Task easy seamless interoperability library.
+// FSharp.Control.FusionTasks - F# Async workflow <--> .NET Task easy seamless interoperability library.
 // Copyright (c) 2016 Kouji Matsui (@kekyo2)
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -158,38 +158,3 @@ module AsyncExtensions =
     /// <returns>F# Async</returns>
     member __.Source(cta: ConfiguredAsyncAwaitable<'T>) =
       Infrastructures.asAsyncCTAT(cta)
-
-  ///////////////////////////////////////////////////////////////////////////////////
-  // F# side synchronizer extensions.
-
-  type AsyncLock with
-
-    /// <summary>
-    /// Try asyncronos lock. (For F# native)
-    /// </summary>
-    /// <returns>
-    /// Async computation.
-    /// </returns>
-    member this.AsyncLock() =
-      this.asyncLock()
-    
-    /// <summary>
-    /// Try asyncronos lock. (For F# native)
-    /// </summary>
-    /// <param name="token">Cancellation token (optional)</param>
-    /// <returns>
-    /// Async computation.
-    /// </returns>
-    member this.AsyncLock(token: CancellationToken) =
-      this.asyncLock(token)
-
-  type AsyncLazy<'T> with
-
-    /// <summary>
-    /// Get or generate instance asynchronosly.
-    /// </summary>
-    /// <returns>
-    /// 'T instance.
-    /// </returns>
-    member this.AsyncGetValue() =
-      this.asyncGetValue()

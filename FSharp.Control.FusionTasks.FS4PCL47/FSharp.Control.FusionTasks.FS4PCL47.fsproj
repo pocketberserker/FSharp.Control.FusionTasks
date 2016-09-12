@@ -38,7 +38,7 @@
     <DocumentationFile>bin\Release\FSharp.Control.FusionTasks.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
     <AssemblyOriginatorKeyFile>..\FSharp.Control.FusionTasks.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup>
@@ -75,9 +75,6 @@
     </Compile>
     <Compile Include="..\FSharp.Control.FusionTasks.FS3PCL47\Infrastructures.fs">
       <Link>Infrastructures.fs</Link>
-    </Compile>
-    <Compile Include="..\FSharp.Control.FusionTasks.FS3PCL47\Synchronizers.fs">
-      <Link>Synchronizers.fs</Link>
     </Compile>
     <Compile Include="..\FSharp.Control.FusionTasks.FS3PCL47\AsyncExtensions.fs">
       <Link>AsyncExtensions.fs</Link>

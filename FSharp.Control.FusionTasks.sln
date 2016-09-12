@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasks.FS3PCL47", "FSharp.Control.FusionTasks.FS3PCL47\FSharp.Control.FusionTasks.FS3PCL47.fsproj", "{1229F4F2-5501-44FA-B919-347EBA76CB02}"
 EndProject
@@ -41,6 +41,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		FSharp.Control.FusionTasks.FS31.nuspec = FSharp.Control.FusionTasks.FS31.nuspec
 		FSharp.Control.FusionTasks.FS40.nuspec = FSharp.Control.FusionTasks.FS40.nuspec
 		FSharp.Control.FusionTasks.snk = FSharp.Control.FusionTasks.snk
+		LICENSE.txt = LICENSE.txt
 		README.md = README.md
 	EndProjectSection
 EndProject

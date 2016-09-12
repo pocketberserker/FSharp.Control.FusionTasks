@@ -1,6 +1,6 @@
 ﻿/////////////////////////////////////////////////////////////////////////////////////////////////
 //
-// FSharp.Control.FusionTasks - F# Async computation <--> .NET Task easy seamless interoperability library.
+// FSharp.Control.FusionTasks - F# Async workflow <--> .NET Task easy seamless interoperability library.
 // Copyright (c) 2016 Kouji Matsui (@kekyo2)
 //
 // Licensed under the Apache License, Version 2.0 (the "License");

@@ -3,17 +3,17 @@
 	<metadata>
 		<id>FSharp.Control.FusionTasks.FS20</id>
 		<version>$Version$</version>
-		<title>FusionTasks (F# 2.0)</title>
+		<title>FSharp.Control.FusionTasks (F# 2.0)</title>
 		<authors>Kouji Matsui</authors>
 		<owners>Kouji Matsui</owners>
-		<description>F# Async computation &lt;--&gt; .NET Task easy seamless interoperability library.</description>
-		<summary>F# Async computation &lt;--&gt; .NET Task easy seamless interoperability library.</summary>
+		<description>F# Async workflow &lt;--&gt; .NET Task easy seamless interoperability library.</description>
+		<summary>F# Async workflow &lt;--&gt; .NET Task easy seamless interoperability library.</summary>
 		<copyright>Copyright (c) 2016 Kouji Matsui</copyright>
 		<licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
 		<projectUrl>https://github.com/kekyo/FSharp.Control.FusionTasks</projectUrl>
 		<iconUrl>https://raw.githubusercontent.com/kekyo/FSharp.Control.FusionTasks/master/Images/FSharp.Control.FusionTasks.100.png</iconUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
-		<releaseNotes>FusionTasks is F# Async computation &lt;--&gt; .NET Task easy seamless interoperability library.</releaseNotes>
+		<releaseNotes>FusionTasks is F# Async workflow &lt;--&gt; .NET Task easy seamless interoperability library.</releaseNotes>
 		<tags>F# Async Task C# await interop seamless computation Builder extension</tags>
 		<dependencies>
 			<dependency id="Microsoft.Bcl" version="1.1.10" />

@@ -52,7 +52,7 @@
     <DocumentationFile>bin\Release\FSharpTest.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
     <AssemblyOriginatorKeyFile>..\FSharp.Control.FusionTasks.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
