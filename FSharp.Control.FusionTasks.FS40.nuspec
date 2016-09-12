@@ -43,6 +43,8 @@
       </group>
     </dependencies>
     <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System" />
+      <frameworkAssembly assemblyName="System.Core" />
       <frameworkAssembly assemblyName="System.Data" targetFramework="net45" />
       <frameworkAssembly assemblyName="System.ServiceModel" targetFramework="net45" />
       <frameworkAssembly assemblyName="System.ServiceModel.Discovery" targetFramework="net45" />

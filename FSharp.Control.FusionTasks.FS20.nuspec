@@ -20,6 +20,8 @@
       <dependency id="Microsoft.Bcl.Build" version="1.0.21" />
     </dependencies>
     <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System" />
+      <frameworkAssembly assemblyName="System.Core" />
       <frameworkAssembly assemblyName="System.Data" />
       <frameworkAssembly assemblyName="System.ServiceModel" />
       <frameworkAssembly assemblyName="System.ServiceModel.Discovery" />
