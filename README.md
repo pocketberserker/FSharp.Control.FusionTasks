@@ -2,12 +2,14 @@
 ![FusionTasks](https://raw.githubusercontent.com/kekyo/FSharp.Control.FusionTasks/master/Images/FSharp.Control.FusionTasks.128.png)
 
 ## Status
-* NuGet Package (F# 2.0): [![NuGet FusionTasks (F# 2.0)](https://img.shields.io/nuget/v/FSharp.Control.FusionTasks.FS20.svg?style=flat)](https://www.nuget.org/packages/FSharp.Control.FusionTasks.FS20)
-* NuGet Package (F# 3.0): [![NuGet FusionTasks (F# 3.0)](https://img.shields.io/nuget/v/FSharp.Control.FusionTasks.FS30.svg?style=flat)](https://www.nuget.org/packages/FSharp.Control.FusionTasks.FS30)
-* NuGet Package (F# 3.1): [![NuGet FusionTasks (F# 3.1)](https://img.shields.io/nuget/v/FSharp.Control.FusionTasks.FS31.svg?style=flat)](https://www.nuget.org/packages/FSharp.Control.FusionTasks.FS31)
-* NuGet Package (F# 4.0): [![NuGet FusionTasks (F# 4.0)](https://img.shields.io/nuget/v/FSharp.Control.FusionTasks.FS40.svg?style=flat)](https://www.nuget.org/packages/FSharp.Control.FusionTasks.FS40)
-* Continuous integration: [![AppVeyor FusionTasks](https://img.shields.io/appveyor/ci/kekyo/fsharp-control-fusiontasks.svg?style=flat)](https://ci.appveyor.com/project/kekyo/fsharp-control-fusiontasks)
-* Gitter: [![Gitter FusionTasks](https://badges.gitter.im/kekyo/FSharp.Control.FusionTasks.svg)](https://gitter.im/kekyo/FSharp.Control.FusionTasks?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+| | Current |
+|:---|:--:|
+| NuGet Package (F# 2.0) | [![NuGet FusionTasks (F# 2.0)](https://img.shields.io/nuget/v/FSharp.Control.FusionTasks.FS20.svg?style=flat)](https://www.nuget.org/packages/FSharp.Control.FusionTasks.FS20) |
+| NuGet Package (F# 3.0) | [![NuGet FusionTasks (F# 3.0)](https://img.shields.io/nuget/v/FSharp.Control.FusionTasks.FS30.svg?style=flat)](https://www.nuget.org/packages/FSharp.Control.FusionTasks.FS30) |
+| NuGet Package (F# 3.1) | [![NuGet FusionTasks (F# 3.1)](https://img.shields.io/nuget/v/FSharp.Control.FusionTasks.FS31.svg?style=flat)](https://www.nuget.org/packages/FSharp.Control.FusionTasks.FS31) |
+| NuGet Package (F# 4.0) | [![NuGet FusionTasks (F# 4.0)](https://img.shields.io/nuget/v/FSharp.Control.FusionTasks.FS40.svg?style=flat)](https://www.nuget.org/packages/FSharp.Control.FusionTasks.FS40) |
+| Continuous integration | [![AppVeyor FusionTasks](https://img.shields.io/appveyor/ci/kekyo/fsharp-control-fusiontasks.svg?style=flat)](https://ci.appveyor.com/project/kekyo/fsharp-control-fusiontasks) |
+| Gitter | [![Gitter FusionTasks](https://badges.gitter.im/kekyo/FSharp.Control.FusionTasks.svg)](https://gitter.im/kekyo/FSharp.Control.FusionTasks?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) |
 
 ## What is this?
 * F# Async workflow <--> .NET Task easy seamless interoperability library.
@@ -49,7 +51,7 @@ public async Task AsyncTest(FSharpAsync<int> asyncIntComp)
 * Easy interoperability .NET Task <--> F#'s Async.
 * F# async workflow block now support direct .NET Task handle with let!, do! and use!.
 * .NET (C# async-await) now support directly F#'s Async.
-* SyncronizationContext capture operation support (F#: Configure method / .NET (C#) AsAsyncContext method)
+* SyncronizationContext capture operation support (F#: AsyncConfigure method / .NET (C#) AsAsyncConfigured method)
 
 ## Benefits
 * Easy interoperability, combination and relation standard .NET OSS packages using Task and F#'s Async.
@@ -90,7 +92,7 @@ let asyncTest = async {
 ``` fsharp
 use ms = new MemoryStream()
 
-// Manually conversion by "asAsync" : Task<T> --> Async<'T>
+// Manually conversion by "AsAsync" : Task<T> --> Async<'T>
 let asy = ms.WriteAsync(data, 0, data.Length).AsAsync()
 ```
 
