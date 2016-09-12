@@ -127,6 +127,26 @@ let asyncTest = async {
 ### In C# side:
 * Really need sample codes? huh? :)
 
+### Easy LINQPad 5 driven:
+* Before setup NuGet package (FSharp.Control.FusionTasks.FS40) the LINQPad NuGet Manager.
+
+``` fsharp
+// Result is Async<byte[]>
+let asyncSequenceData =
+  let data = [| 0uy..100uy |]
+  async {
+    use fs = new MemoryStream()
+    let! length = fs.WriteAsync(data, 0, data.Length)
+    do! fs.FlushAsync()
+    return fs.ToArray()
+  }
+
+// Convert to Task<byte[]> and dump:
+asyncSequenceData.AsTask().Dump()
+```
+
+![LINQPad 5 driven](https://raw.githubusercontent.com/kekyo/FSharp.Control.FusionTasks/master/Images/linqpad5.png)
+
 ## Additional resources
 * Source codes available only FSharp.Control.FusionTasks.FS3PCL47 project.
 * The "Continuation Passing Style" basics and provide seamless interoperability .NET Task and F# Async workflow implicit conversion technics. "NLNagoya 2016" conference session slides. (Composed blog post, sorry Japanese only) http://www.kekyo.net/2016/04/17/5804
