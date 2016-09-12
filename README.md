@@ -58,7 +58,7 @@ public async Task AsyncTest(FSharpAsync<int> asyncIntComp)
 
 ## Environments
 * .NET Framework 4.0/4.5
-* .NET Core 1.0 (Only F# 4.0)
+* .NET Core 1.0 (Only F# 4.0, FSharp.Core.netcore.alpha-160627)
 * .NET Framework Portable class library (Profile 7/47/78/259)
 * F# 2.0, 3.0, 3.1, 4.0 (NuGet package separated, choose one)
 
@@ -79,6 +79,10 @@ public async Task AsyncTest(FSharpAsync<int> asyncIntComp)
 * Under Apache v2 http://www.apache.org/licenses/LICENSE-2.0
 
 ## History
+* 0.9.6:
+  * WIP release.
+* 0.9.5:
+  * WIP release.
 * 0.9.4:
   * Fixed nuspec reference System, System.Core
 * 0.9.3:

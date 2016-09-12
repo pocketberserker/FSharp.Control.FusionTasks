@@ -19,19 +19,6 @@
 
 ///////////////////////////////////////////////////////////////////////////////////
 
-#if PCL7 || PCL47 || PCL78 || PCL259
-// HACK: PCL facade contains no type forward declaration for ExtensionAttribute.
-namespace System.Runtime.CompilerServices
-
-open System
-
-[<AttributeUsage(AttributeTargets.Class ||| AttributeTargets.Method)>]
-type ExtensionAttribute internal () =
-  inherit Attribute()
-#endif
-
-///////////////////////////////////////////////////////////////////////////////////
-
 namespace System.Threading.Tasks
 
 open System.Runtime.CompilerServices
