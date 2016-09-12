@@ -16,9 +16,31 @@
     <releaseNotes>FusionTasks is F# Async workflow &lt;--&gt; .NET Task easy seamless interoperability library.</releaseNotes>
     <tags>F# Async Task C# await interop seamless computation Builder extension</tags>
     <dependencies>
-      <dependency id="Microsoft.Bcl" version="1.1.10" />
-      <dependency id="Microsoft.Bcl.Build" version="1.0.21" />
-      <dependency id="Microsoft.Bcl.Async" version="1.0.168" />
+      <group targetFramework="net40-Client">
+        <dependency id="Microsoft.Bcl" version="1.1.10" />
+        <dependency id="Microsoft.Bcl.Build" version="1.0.21" />
+        <dependency id="Microsoft.Bcl.Async" version="1.0.168" />
+      </group>
+      <group targetFramework="portable-net40+sl50+win+MonoAndroid10+xamarinios10+MonoTouch10">
+        <dependency id="Microsoft.Bcl" version="1.1.10" />
+        <dependency id="Microsoft.Bcl.Build" version="1.0.21" />
+        <dependency id="Microsoft.Bcl.Async" version="1.0.168" />
+      </group>
+      <group targetFramework="portable-net45+MonoAndroid10+xamarinios10+MonoTouch10">
+        <dependency id="Microsoft.Bcl" version="1.1.10" />
+        <dependency id="Microsoft.Bcl.Build" version="1.0.21" />
+        <dependency id="Microsoft.Bcl.Async" version="1.0.168" />
+      </group>
+      <group targetFramework="portable-net45+wp80+MonoAndroid10+xamarinios10+MonoTouch10">
+        <dependency id="Microsoft.Bcl" version="1.1.10" />
+        <dependency id="Microsoft.Bcl.Build" version="1.0.21" />
+        <dependency id="Microsoft.Bcl.Async" version="1.0.168" />
+      </group>
+      <group targetFramework="portable-net45+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10">
+        <dependency id="Microsoft.Bcl" version="1.1.10" />
+        <dependency id="Microsoft.Bcl.Build" version="1.0.21" />
+        <dependency id="Microsoft.Bcl.Async" version="1.0.168" />
+      </group>
     </dependencies>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System.Data" />
