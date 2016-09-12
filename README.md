@@ -22,9 +22,8 @@ let asyncTest = async {
   do ms.Position <- 0L
 
   // FusionTasks directly interpreted System.Threading.Tasks.Task<T> class in F# async-workflow block.
-  let! length = ms.ReadAsync(data, 0, data.Length)
-  do length |> should equal data.Length
-  return ms.ToArray()
+  let! length = ms.ReadAsync(data2, 0, data2.Length)
+  do length |> should equal data2.Length
 }
 ```
 
@@ -80,6 +79,9 @@ public async Task AsyncTest(FSharpAsync<int> asyncIntComp)
 * Under Apache v2 http://www.apache.org/licenses/LICENSE-2.0
 
 ## History
+* 0.9.2:
+  * Add package targetFramework.
+  * Updated RelaxVersioner.
 * 0.9.1:
   * Remove strongly-signed (Unit test doesn't work...)
   * Omit synchronizers (AsyncLock, AsyncLazy). Thats moving to FSharp.Control.AsyncPrimitives project (https://github.com/kekyo/FSharp.Control.AsyncPrimitives).
