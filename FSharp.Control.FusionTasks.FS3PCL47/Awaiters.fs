@@ -1,6 +1,6 @@
 ﻿/////////////////////////////////////////////////////////////////////////////////////////////////
 //
-// FSharp.Control.FusionTasks - F# Async computation <--> .NET Task easy seamless interoperability library.
+// FSharp.Control.FusionTasks - F# Async workflow <--> .NET Task easy seamless interoperability library.
 // Copyright (c) 2016 Kouji Matsui (@kekyo2)
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -42,10 +42,7 @@ open System.Runtime.CompilerServices
 /// <summary>
 /// F# Async's awaiter implementation. This structure using implicitly.
 /// </summary>
-[<Struct>]
-[<NoEquality>]
-[<NoComparison>]
-[<AutoSerializable(false)>]
+[<Struct; NoEquality; NoComparison; AutoSerializable(false)>]
 type AsyncAwaiter internal (ta: TaskAwaiter) =
 
     member __.IsCompleted = ta.IsCompleted
@@ -59,10 +56,7 @@ type AsyncAwaiter internal (ta: TaskAwaiter) =
 /// <summary>
 /// F# Async's awaiter implementation. This structure using implicitly.
 /// </summary>
-[<Struct>]
-[<NoEquality>]
-[<NoComparison>]
-[<AutoSerializable(false)>]
+[<Struct; NoEquality; NoComparison; AutoSerializable(false)>]
 type AsyncAwaiter<'T> internal (ta: TaskAwaiter<'T>) =
 
     member __.IsCompleted = ta.IsCompleted
@@ -79,10 +73,7 @@ type AsyncAwaiter<'T> internal (ta: TaskAwaiter<'T>) =
 /// <summary>
 /// F# Async's awaiter implementation. This structure using implicitly.
 /// </summary>
-[<Struct>]
-[<NoEquality>]
-[<NoComparison>]
-[<AutoSerializable(false)>]
+[<Struct; NoEquality; NoComparison; AutoSerializable(false)>]
 type ConfiguredAsyncAwaiter internal (ctacta: ConfiguredTaskAwaitable.ConfiguredTaskAwaiter) =
 
     member __.IsCompleted = ctacta.IsCompleted
@@ -96,10 +87,7 @@ type ConfiguredAsyncAwaiter internal (ctacta: ConfiguredTaskAwaitable.Configured
 /// <summary>
 /// F# Async's awaitable implementation. This structure using implicitly.
 /// </summary>
-[<Struct>]
-[<NoEquality>]
-[<NoComparison>]
-[<AutoSerializable(false)>]
+[<Struct; NoEquality; NoComparison; AutoSerializable(false)>]
 type ConfiguredAsyncAwaitable internal (cta: ConfiguredTaskAwaitable) =
 
     member __.GetAwaiter() = ConfiguredAsyncAwaiter(cta.GetAwaiter())
@@ -107,10 +95,7 @@ type ConfiguredAsyncAwaitable internal (cta: ConfiguredTaskAwaitable) =
 /// <summary>
 /// F# Async's awaiter implementation. This structure using implicitly.
 /// </summary>
-[<Struct>]
-[<NoEquality>]
-[<NoComparison>]
-[<AutoSerializable(false)>]
+[<Struct; NoEquality; NoComparison; AutoSerializable(false)>]
 type ConfiguredAsyncAwaiter<'T> internal (ctacta: ConfiguredTaskAwaitable<'T>.ConfiguredTaskAwaiter) =
 
     member __.IsCompleted = ctacta.IsCompleted
@@ -124,10 +109,7 @@ type ConfiguredAsyncAwaiter<'T> internal (ctacta: ConfiguredTaskAwaitable<'T>.Co
 /// <summary>
 /// F# Async's awaitable implementation. This structure using implicitly.
 /// </summary>
-[<Struct>]
-[<NoEquality>]
-[<NoComparison>]
-[<AutoSerializable(false)>]
+[<Struct; NoEquality; NoComparison; AutoSerializable(false)>]
 type ConfiguredAsyncAwaitable<'T> internal (cta: ConfiguredTaskAwaitable<'T>) =
 
     member __.GetAwaiter() = ConfiguredAsyncAwaiter<'T>(cta.GetAwaiter())

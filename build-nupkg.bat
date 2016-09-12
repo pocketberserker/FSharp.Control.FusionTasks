@@ -1,6 +1,6 @@
 @echo off
 
-rem FSharp.Control.FusionTasks - F# Async computation <--> .NET Task easy seamless interoperability library.
+rem FSharp.Control.FusionTasks - F# Async workflow <--> .NET Task easy seamless interoperability library.
 rem Copyright (c) 2016 Kouji Matsui (@kekyo2)
 rem 
 rem Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,7 +15,7 @@ rem WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 rem See the License for the specific language governing permissions and
 rem limitations under the License.
 
-.nuget\nuget pack FSharp.Control.FusionTasks.FS20.nuspec -Prop Version=0.5.8 -Prop Configuration=Release
-.nuget\nuget pack FSharp.Control.FusionTasks.FS30.nuspec -Prop Version=0.5.8 -Prop Configuration=Release
-.nuget\nuget pack FSharp.Control.FusionTasks.FS31.nuspec -Prop Version=0.5.8 -Prop Configuration=Release
-.nuget\nuget pack FSharp.Control.FusionTasks.FS40.nuspec -Prop Version=0.5.8 -Prop Configuration=Release
+.nuget\nuget pack FSharp.Control.FusionTasks.FS20.nuspec -Prop Version=1.0.0 -Prop Configuration=Release
+.nuget\nuget pack FSharp.Control.FusionTasks.FS30.nuspec -Prop Version=1.0.0 -Prop Configuration=Release
+.nuget\nuget pack FSharp.Control.FusionTasks.FS31.nuspec -Prop Version=1.0.0 -Prop Configuration=Release
+.nuget\nuget pack FSharp.Control.FusionTasks.FS40.nuspec -Prop Version=1.0.0 -Prop Configuration=Release

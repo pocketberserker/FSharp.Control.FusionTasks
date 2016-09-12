@@ -39,7 +39,7 @@
     <DocumentationFile>bin\Release\FSharp.Control.FusionTasks.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
     <AssemblyOriginatorKeyFile>..\FSharp.Control.FusionTasks.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup>
@@ -63,10 +63,9 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\CenterCLR.RelaxVersioner.0.7.18\build\CenterCLR.RelaxVersioner.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CenterCLR.RelaxVersioner.0.7.18\build\CenterCLR.RelaxVersioner.targets'))" />
     <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
+    <Error Condition="!Exists('..\packages\CenterCLR.RelaxVersioner.0.8.2\build\CenterCLR.RelaxVersioner.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CenterCLR.RelaxVersioner.0.8.2\build\CenterCLR.RelaxVersioner.targets'))" />
   </Target>
-  <Import Project="..\packages\CenterCLR.RelaxVersioner.0.7.18\build\CenterCLR.RelaxVersioner.targets" Condition="Exists('..\packages\CenterCLR.RelaxVersioner.0.7.18\build\CenterCLR.RelaxVersioner.targets')" />
   <ItemGroup>
     <Compile Include="..\CommonAssemblyInfo.fs">
       <Link>CommonAssemblyInfo.fs</Link>
@@ -76,9 +75,6 @@
     </Compile>
     <Compile Include="..\FSharp.Control.FusionTasks.FS3PCL47\Infrastructures.fs">
       <Link>Infrastructures.fs</Link>
-    </Compile>
-    <Compile Include="..\FSharp.Control.FusionTasks.FS3PCL47\Synchronizers.fs">
-      <Link>Synchronizers.fs</Link>
     </Compile>
     <Compile Include="..\FSharp.Control.FusionTasks.FS3PCL47\AsyncExtensions.fs">
       <Link>AsyncExtensions.fs</Link>
@@ -104,6 +100,7 @@
     </Reference>
   </ItemGroup>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
+  <Import Project="..\packages\CenterCLR.RelaxVersioner.0.8.2\build\CenterCLR.RelaxVersioner.targets" Condition="Exists('..\packages\CenterCLR.RelaxVersioner.0.8.2\build\CenterCLR.RelaxVersioner.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
