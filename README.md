@@ -93,7 +93,7 @@ let asyncTest = async {
 use ms = new MemoryStream()
 
 // Manually conversion by "AsAsync" : Task<T> --> Async<'T>
-let asy = ms.WriteAsync(data, 0, data.Length).AsAsync()
+let length = ms.ReadAsync(data, 0, data.Length).AsAsync() |> Async.RunSynchronosly
 ```
 
 ### Without async workflow (CancellationToken):
@@ -104,9 +104,9 @@ let cts = new CancellationTokenSource()
 
 // Produce with CancellationToken:
 // TIPS: FusionTasks cannot handle directly CancellationToken IN ASYNC WORKFLOW.
-//   Because async workflow semantics implicitly handled CancellationToken with Async.DefaultCanncelationToken, CacellationToken and CancelDefaultToken().
+//   Because async workflow semantics implicitly handled CancellationToken with Async.DefaultCancellationToken, CancellationToken and CancelDefaultToken().
 //   (CancellationToken derived from Async.StartWithContinuations() in async workflow.)
-let asy = ms.WriteAsync(data, 0, data.Length).AsAsync(cts.Token)
+let length = ms.ReadAsync(data, 0, data.Length).AsAsync(cts.Token) |> Async.RunSynchronosly
 ```
 
 ### Handle Task.ConfigureAwait(...)  (Capture/release SynchContext)
@@ -116,11 +116,11 @@ let asyncTest = async {
   use ms = new MemoryStream()
 
   // Task<T> --> ConfiguredAsyncAwaitable<'T> :
-  // Why use AsyncConfigure() insted ConfigureAwait() ?
+  // Why use AsyncConfigure() instead ConfigureAwait() ?
   //   Because the "ConfiguredTaskAwaitable<T>" lack declare the TypeForwardedTo attribute in some PCL.
   //   If use AsyncConfigure(), complete hidden refer ConfiguredTaskAwaitable into FusionTasks assembly,
   //   avoid strange linking errors.
-  let! length = ms.WriteAsync(data, 0, data.Length).AsyncConfigure(false)
+  let! length = ms.ReadAsync(data, 0, data.Length).AsyncConfigure(false)
 }
 ```
 
@@ -131,12 +131,15 @@ let asyncTest = async {
 * Before setup NuGet package (FSharp.Control.FusionTasks.FS40) the LINQPad NuGet Manager.
 
 ``` fsharp
+open System.IO
+
 // Result is Async<byte[]>
 let asyncSequenceData =
-  let data = [| 0uy..100uy |]
+  let r = new Random()
+  let data = [| for i = 1 to 100 do yield byte (r.Next()) |]
   async {
     use fs = new MemoryStream()
-    let! length = fs.WriteAsync(data, 0, data.Length)
+    do! fs.WriteAsync(data, 0, data.Length)
     do! fs.FlushAsync()
     return fs.ToArray()
   }
