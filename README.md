@@ -109,7 +109,7 @@ let cts = new CancellationTokenSource()
 let length = ms.ReadAsync(data, 0, data.Length).AsAsync(cts.Token) |> Async.RunSynchronosly
 ```
 
-### Handle Task.ConfigureAwait(...)  (Capture/release SynchContext)
+### Handle Task.ConfigureAwait(...)  (Capture/release SynchContext):
 
 ``` fsharp
 let asyncTest = async {
@@ -122,6 +122,27 @@ let asyncTest = async {
   //   avoid strange linking errors.
   let! length = ms.ReadAsync(data, 0, data.Length).AsyncConfigure(false)
 }
+```
+
+### Delegate async continuation - works like TaskCompletionSource&lt;T&gt;:
+
+``` fsharp
+open System.Threading
+
+let asyncCalculate() =
+  // Create AsyncCompletionSource<'T>.
+  let acs = new AsyncCompletionSource<int>()
+
+  // Execution with completely independent another thread...
+  let thread = new Thread(new ThreadStart(fun _ ->
+    Thread.Sleep(5000)
+    // If you captured thread context (normally continuation or callbacks),
+    // can delegation async continuation using AsyncCompletionSource<'T>.
+    acs.SetResult(123 * 456)))
+  thread.Start()
+
+  // Async<'T> instance
+  acs.Async
 ```
 
 ### In C# side:
