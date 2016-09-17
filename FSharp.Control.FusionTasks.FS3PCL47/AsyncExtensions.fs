@@ -126,21 +126,29 @@ module AsyncExtensions =
   type AsyncBuilder with
 
     /// <summary>
+    /// Bypass default Async binder.
+    /// </summary>
+    /// <param name="computation">F# Async instance.</param>
+    /// <returns>F# Async instance.</returns>
+    member __.Source(computation: Async<'T>) =
+      computation
+
+    /// <summary>
     /// Seamless conversion from .NET Task to F# Async in Async workflow.
     /// </summary>
-    /// <param name="expr">.NET Task (expression result)</param>
+    /// <param name="task">.NET Task (expression result)</param>
     /// <returns>F# Async</returns>
-    member __.Source(expr: Task) =
-      Infrastructures.asAsync(expr, None)
+    member __.Source(task: Task) =
+      Infrastructures.asAsync(task, None)
 
     /// <summary>
     /// Seamless conversion from .NET Task to F# Async in Async workflow.
     /// </summary>
     /// <typeparam name="'T">Computation result type</typeparam> 
-    /// <param name="expr">.NET Task (expression result)</param>
+    /// <param name="task">.NET Task (expression result)</param>
     /// <returns>F# Async</returns>
-    member __.Source(expr: Task<'T>) =
-      Infrastructures.asAsyncT(expr, None)
+    member __.Source(task: Task<'T>) =
+      Infrastructures.asAsyncT(task, None)
 
     /// <summary>
     /// Seamless conversion from .NET Task to F# Async in Async workflow.

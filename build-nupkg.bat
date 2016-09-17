@@ -15,7 +15,9 @@ rem WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 rem See the License for the specific language governing permissions and
 rem limitations under the License.
 
-.nuget\nuget pack FSharp.Control.FusionTasks.FS20.nuspec -Prop Version=1.0.0 -Prop Configuration=Release
-.nuget\nuget pack FSharp.Control.FusionTasks.FS30.nuspec -Prop Version=1.0.0 -Prop Configuration=Release
-.nuget\nuget pack FSharp.Control.FusionTasks.FS31.nuspec -Prop Version=1.0.0 -Prop Configuration=Release
-.nuget\nuget pack FSharp.Control.FusionTasks.FS40.nuspec -Prop Version=1.0.0 -Prop Configuration=Release
+set nupkg_version=1.0.1
+
+.nuget\nuget pack FSharp.Control.FusionTasks.FS20.nuspec -Prop Version=%nupkg_version% -Prop Configuration=Release
+.nuget\nuget pack FSharp.Control.FusionTasks.FS30.nuspec -Prop Version=%nupkg_version% -Prop Configuration=Release
+.nuget\nuget pack FSharp.Control.FusionTasks.FS31.nuspec -Prop Version=%nupkg_version% -Prop Configuration=Release
+.nuget\nuget pack FSharp.Control.FusionTasks.FS40.nuspec -Prop Version=%nupkg_version% -Prop Configuration=Release

@@ -82,3 +82,19 @@ let AsyncBuilderAsAsyncCTATTest() =
     }
   let results = computation |> Async.RunSynchronously  // FSUnit not supported Async/Task based tests, so run synchronously here. 
   results |> should equal data
+      
+[<Test>]
+let AsyncBuilderWithAsyncAndTaskCombinationTest() =
+  let asyncGenData() = async {
+      let r = Random()
+      let data = Seq.init 100000 (fun i -> 0uy) |> Seq.toArray
+      do r.NextBytes data
+      return data
+    }
+  let computation = async {
+      let! data = asyncGenData()
+      use ms = new MemoryStream()
+      do ms.Write(data, 0, data.Length)
+      do ms.ToArray() |> should equal data
+    }
+  computation |> Async.RunSynchronously  // FSUnit not supported Async/Task based tests, so run synchronously here. 
