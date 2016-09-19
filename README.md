@@ -145,6 +145,27 @@ let asyncCalculate() =
   acs.Async
 ```
 
+### TIPS: Must adding annotation for arguments if using it async workflow:
+
+``` fsharp
+let asyncInner arg0 = async {
+  // Cause FS0041:
+  //   A unique overload for method 'Source' could not be determined based on type information prior to this program point.
+  //   A type annotation may be needed.
+  //  --> Because F# compiler conflict arg0 type inferences: Async<int> or Task<int>.
+  let! result = arg0
+  let calculated = result + 1
+  printfn "%d" calculated
+}
+
+// Fixed with type annotation Async<'T> or Task<'T>:
+let asyncInner (arg0:Async<_>) = async {
+  let! result = arg0
+  let calculated = result + 1
+  printfn "%d" calculated
+}
+```
+
 ### In C# side:
 * Really need sample codes? huh? :)
 
