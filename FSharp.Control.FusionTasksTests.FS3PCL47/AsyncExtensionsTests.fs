@@ -98,3 +98,12 @@ let AsyncBuilderWithAsyncAndTaskCombinationTest() =
       do ms.ToArray() |> should equal data
     }
   computation |> Async.RunSynchronously  // FSUnit not supported Async/Task based tests, so run synchronously here. 
+
+[<Test>]
+let AsyncBuilderCompilesForInTest() =
+  let computation = async {
+        for i in {0..1} do
+            ()
+    }
+
+  computation |> Async.RunSynchronously  // FSUnit not supported Async/Task based tests, so run synchronously here. 
