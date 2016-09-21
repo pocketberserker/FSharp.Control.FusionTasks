@@ -166,3 +166,13 @@ module AsyncExtensions =
     /// <returns>F# Async</returns>
     member __.Source(cta: ConfiguredAsyncAwaitable<'T>) =
       Infrastructures.asAsyncCTAT(cta)
+
+    /// <summary>
+    /// Accept any sequence type to support `for .. in` expressions in Async workflows.
+    /// </summary>
+    /// <typeparam name="'E">The element type of the sequence</typeparam> 
+    /// <param name="s">The sequence.</param>
+    /// <returns>F# Async</returns>
+    member __.Source(s: 'R seq) =
+      s
+    
