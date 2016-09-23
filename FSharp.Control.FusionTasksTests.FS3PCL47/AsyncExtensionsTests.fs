@@ -102,8 +102,10 @@ let AsyncBuilderWithAsyncAndTaskCombinationTest() =
 [<Test>]
 let AsyncBuilderCompilesForInTest() =
   let computation = async {
-        for i in {0..1} do
-            ()
+      let mutable result = 0
+      for i in {1..10} do
+        result <- result + i
+      do result |> should equal 55
     }
 
   computation |> Async.RunSynchronously  // FSUnit not supported Async/Task based tests, so run synchronously here. 

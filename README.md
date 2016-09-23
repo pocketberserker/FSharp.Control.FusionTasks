@@ -205,8 +205,10 @@ asyncSequenceData.AsTask().Dump()
 * Under Apache v2 http://www.apache.org/licenses/LICENSE-2.0
 
 ## History
+* 1.0.2:
+  * Support 'for .. in' expressions. (Thx Armin!)
 * 1.0.1:
-  * Fixed cause undefined Async<'T> using combination Async<'T> and Task/Task<'T> in async workflow.
+  * Fixed cause undefined Async<'T> using combination Async<'T> and Task/Task<'T> in async workflow. (Thx Honza!)
 * 1.0.0:
   * RTM release :clap:
   * Add FSharp.Core NuGet references.
