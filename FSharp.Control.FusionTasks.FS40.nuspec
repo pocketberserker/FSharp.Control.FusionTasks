@@ -17,9 +17,6 @@
     <tags>F# Async Task C# await interop seamless computation Builder extension</tags>
     <dependencies>
       <group targetFramework="net45">
-        <dependency id="Microsoft.Bcl" version="1.1.10" />
-        <dependency id="Microsoft.Bcl.Build" version="1.0.21" />
-        <dependency id="Microsoft.Bcl.Async" version="1.0.168" />
         <dependency id="FSharp.Core" version="4.0.0.1" />
       </group>
       <group targetFramework="portable-net40+sl50+win+MonoAndroid10+xamarinios10+MonoTouch10">
@@ -53,11 +50,6 @@
         -->
       </group>
     </dependencies>
-    <frameworkAssemblies>
-      <frameworkAssembly assemblyName="System.Data" targetFramework="net45" />
-      <frameworkAssembly assemblyName="System.ServiceModel" targetFramework="net45" />
-      <frameworkAssembly assemblyName="System.ServiceModel.Discovery" targetFramework="net45" />
-    </frameworkAssemblies>
   </metadata>
   <!-- Important platform versioning informations: https://fsharp.github.io/2015/04/18/fsharp-core-notes.html -->
   <files>
