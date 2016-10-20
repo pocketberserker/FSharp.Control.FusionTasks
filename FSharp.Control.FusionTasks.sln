@@ -65,6 +65,8 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasks.
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasks.FS31NET45", "FSharp.Control.FusionTasks.FS31NET45\FSharp.Control.FusionTasks.FS31NET45.fsproj", "{F8BBE92C-DA06-4648-BF42-D64436C6A9E6}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasks.FS4NET4", "FSharp.Control.FusionTasks.FS4NET4\FSharp.Control.FusionTasks.FS4NET4.fsproj", "{181652B8-4155-4A85-997C-93C403CFC966}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -143,6 +145,10 @@ Global
 		{F8BBE92C-DA06-4648-BF42-D64436C6A9E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8BBE92C-DA06-4648-BF42-D64436C6A9E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8BBE92C-DA06-4648-BF42-D64436C6A9E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{181652B8-4155-4A85-997C-93C403CFC966}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{181652B8-4155-4A85-997C-93C403CFC966}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{181652B8-4155-4A85-997C-93C403CFC966}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{181652B8-4155-4A85-997C-93C403CFC966}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
