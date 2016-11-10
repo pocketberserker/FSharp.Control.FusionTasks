@@ -194,7 +194,9 @@ asyncSequenceData.AsTask().Dump()
 
 ## Additional resources
 * Source codes available only FSharp.Control.FusionTasks.FS3PCL47 project.
-* The "Continuation Passing Style" basics and provide seamless interoperability .NET Task and F# Async workflow implicit conversion technics. "NLNagoya 2016" conference session slides. (Composed blog post, sorry Japanese only) http://www.kekyo.net/2016/04/17/5804
+* The slides: "How to meets Async and Task" in Seattle F# Users group "MVP Summit Special: A Night of Lightning Talks" 2016.11.09
+
+<iframe src="https://www.slideshare.net/slideshow/embed_code/68424602" width="800" height="500" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
 
 ## TODO
 * Support .NET Core 1.0 (if F# reached RTM.)
