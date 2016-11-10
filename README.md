@@ -194,7 +194,7 @@ asyncSequenceData.AsTask().Dump()
 
 ## Additional resources
 * Source codes available only FSharp.Control.FusionTasks.FS3PCL47 project.
-* The slides: "How to meets Async and Task" in Seattle F# Users group "MVP Summit Special: A Night of Lightning Talks" 2016.11.09
+* The slides: "How to meets Async and Task" in Seattle F# Users group "MVP Summit Special: A Night of Lightning Talks" 2016.11.09 http://www.slideshare.net/kekyo/asyncs-vs-tasks
 
 <iframe src="https://www.slideshare.net/slideshow/embed_code/68424602" width="800" height="500" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
 
