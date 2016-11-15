@@ -56,13 +56,15 @@ public async Task AsyncTest(FSharpAsync<int> asyncIntComp)
 
 ## Benefits
 * Easy interoperability, combination and relation standard .NET OSS packages using Task and F#'s Async.
-* F# 2.0, 3.0, 3.1 and 4.0 with .NET 4.0/4.5 include PCL Profile 7/47/78/259.
+* F# 2.0, 3.0, 3.1 and 4.0 with .NET 4.0/4.5 include PCL Profile 7/47/78/259 and .NET Core 1.0 (.NET Standard 1.6 or higher).
 * Ready to LINQPad 5.
 
 ## Environments
 * .NET Framework 4.0/4.5
 * .NET Framework Portable class library (Profile 7/47/78/259)
 * F# 2.0, 3.0, 3.1, 4.0 (NuGet package separated, choose one)
+* .NET Core 1.0 (F# 4.0 only, .NET Standard 1.6 or higher)
+  * Currently, separated NuGet package (FS40.netcore) and must require -Pre option for use, because .NET Core version FSharp.Core.dll depends on System.Reflection.Metadata BETA package.
 
 ## How to use
 * Search NuGet package and install "FSharp.Control.FusionTasks.FS??". You must select F# version.
@@ -70,6 +72,7 @@ public async Task AsyncTest(FSharpAsync<int> asyncIntComp)
 * C# use, using namespace "System.Threading.Tasks". "Microsoft.FSharp.Control" is optional.
 
 ## Samples
+
 ### Basic async workflow:
 
 ``` fsharp
@@ -200,8 +203,7 @@ asyncSequenceData.AsTask().Dump()
 <iframe src="https://www.slideshare.net/slideshow/embed_code/68424602" width="800" height="500" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
 
 ## TODO
-* Support .NET Core 1.0 (by .NET Standard 1.6 or higher)
-* Improvements more easier/effective interfaces.
+ Improvements more easier/effective interfaces.
 
 ## License
 * Copyright (c) 2016 Kouji Matsui
@@ -209,8 +211,7 @@ asyncSequenceData.AsTask().Dump()
 
 ## History
 * 1.0.12:
-  * WIP release.
-  * Add .NET Core support (WIP, separated package)
+  * Add .NET Core support (Separated package: FSharp.Control.FusionTasks.FS40.netcore with -Pre option required)
 * 1.0.2:
   * Support 'for .. in' expressions. (Thx Armin!)
 * 1.0.1:
