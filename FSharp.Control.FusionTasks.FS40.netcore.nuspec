@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>FSharp.Control.FusionTasks.FS40</id>
-    <version>$Version$</version>
-    <title>FSharp.Control.FusionTasks (F# 4.0)</title>
+    <id>FSharp.Control.FusionTasks.FS40.netcore</id>
+    <version>$Version$-pre</version>
+    <title>FSharp.Control.FusionTasks (F# 4.0/.NET Core)</title>
     <authors>Kouji Matsui</authors>
     <owners>Kouji Matsui</owners>
     <description>F# Async workflow &lt;--&gt; .NET Task easy seamless interoperability library.</description>
@@ -49,6 +49,9 @@
         <dependency id="Microsoft.Bcl.Async" version="1.0.168" />
         <dependency id="FSharp.Core" version="4.0.0.1" />
       </group>
+      <group targetFramework="netstandard1.6">
+        <dependency id="Microsoft.FSharp.Core.netcore" version="1.0.0-alpha-161111" />
+      </group>
     </dependencies>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System.Data" targetFramework="net40" />
@@ -77,5 +80,8 @@
     <file src="FSharp.Control.FusionTasks.FS4PCL259/bin/$Configuration$/FSharp.Control.FusionTasks.dll" target="lib/portable-net45+dnxcore50+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10" />
     <file src="FSharp.Control.FusionTasks.FS4PCL259/bin/$Configuration$/FSharp.Control.FusionTasks.pdb" target="lib/portable-net45+dnxcore50+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10" />
     <file src="FSharp.Control.FusionTasks.FS4PCL259/bin/$Configuration$/FSharp.Control.FusionTasks.xml" target="lib/portable-net45+dnxcore50+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10" />
+    <file src="FSharp.Control.FusionTasks.FS4PCL259/bin/$Configuration$/FSharp.Control.FusionTasks.dll" target="lib/netstandard1.6" />
+    <file src="FSharp.Control.FusionTasks.FS4PCL259/bin/$Configuration$/FSharp.Control.FusionTasks.pdb" target="lib/netstandard1.6" />
+    <file src="FSharp.Control.FusionTasks.FS4PCL259/bin/$Configuration$/FSharp.Control.FusionTasks.xml" target="lib/netstandard1.6" />
   </files>
 </package>

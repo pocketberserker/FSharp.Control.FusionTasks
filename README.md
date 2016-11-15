@@ -8,6 +8,7 @@
 | NuGet Package (F# 3.0) | [![NuGet FusionTasks (F# 3.0)](https://img.shields.io/nuget/v/FSharp.Control.FusionTasks.FS30.svg?style=flat)](https://www.nuget.org/packages/FSharp.Control.FusionTasks.FS30) |
 | NuGet Package (F# 3.1) | [![NuGet FusionTasks (F# 3.1)](https://img.shields.io/nuget/v/FSharp.Control.FusionTasks.FS31.svg?style=flat)](https://www.nuget.org/packages/FSharp.Control.FusionTasks.FS31) |
 | NuGet Package (F# 4.0) | [![NuGet FusionTasks (F# 4.0)](https://img.shields.io/nuget/v/FSharp.Control.FusionTasks.FS40.svg?style=flat)](https://www.nuget.org/packages/FSharp.Control.FusionTasks.FS40) |
+| NuGet Package (F# 4.0/.NET Core) | [![NuGet FusionTasks (F# 4.0/.NET Core)](https://img.shields.io/nuget/v/FSharp.Control.FusionTasks.FS40.netcore.svg?style=flat)](https://www.nuget.org/packages/FSharp.Control.FusionTasks.FS40.netcore) |
 | Continuous integration | [![AppVeyor FusionTasks](https://img.shields.io/appveyor/ci/kekyo/fsharp-control-fusiontasks.svg?style=flat)](https://ci.appveyor.com/project/kekyo/fsharp-control-fusiontasks) |
 | Gitter | [![Gitter FusionTasks](https://badges.gitter.im/kekyo/FSharp.Control.FusionTasks.svg)](https://gitter.im/kekyo/FSharp.Control.FusionTasks?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) |
 
@@ -199,7 +200,7 @@ asyncSequenceData.AsTask().Dump()
 <iframe src="https://www.slideshare.net/slideshow/embed_code/68424602" width="800" height="500" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
 
 ## TODO
-* Support .NET Core 1.0 (if F# reached RTM.)
+* Support .NET Core 1.0 (by .NET Standard 1.6 or higher)
 * Improvements more easier/effective interfaces.
 
 ## License
@@ -207,6 +208,9 @@ asyncSequenceData.AsTask().Dump()
 * Under Apache v2 http://www.apache.org/licenses/LICENSE-2.0
 
 ## History
+* 1.0.12:
+  * WIP release.
+  * Add .NET Core support (WIP, separated package)
 * 1.0.2:
   * Support 'for .. in' expressions. (Thx Armin!)
 * 1.0.1:
