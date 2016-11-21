@@ -58,19 +58,19 @@
   <Import Project="$(FSharpTargetsPath)" Condition="Exists('$(FSharpTargetsPath)')" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <ItemGroup>
-    <Compile Include="..\CommonAssemblyInfo.fs">
+    <Compile Include="..\FSharp.Control.FusionTasks\CommonAssemblyInfo.fs">
       <Link>CommonAssemblyInfo.fs</Link>
     </Compile>
-    <Compile Include="..\FSharp.Control.FusionTasks.FS3PCL47\Awaiters.fs">
+    <Compile Include="..\FSharp.Control.FusionTasks\Awaiters.fs">
       <Link>Awaiters.fs</Link>
     </Compile>
-    <Compile Include="..\FSharp.Control.FusionTasks.FS3PCL47\Infrastructures.fs">
+    <Compile Include="..\FSharp.Control.FusionTasks\Infrastructures.fs">
       <Link>Infrastructures.fs</Link>
     </Compile>
-    <Compile Include="..\FSharp.Control.FusionTasks.FS3PCL47\AsyncExtensions.fs">
+    <Compile Include="..\FSharp.Control.FusionTasks\AsyncExtensions.fs">
       <Link>AsyncExtensions.fs</Link>
     </Compile>
-    <Compile Include="..\FSharp.Control.FusionTasks.FS3PCL47\TaskExtensions.fs">
+    <Compile Include="..\FSharp.Control.FusionTasks\TaskExtensions.fs">
       <Link>TaskExtensions.fs</Link>
     </Compile>
     <None Include="packages.config" />

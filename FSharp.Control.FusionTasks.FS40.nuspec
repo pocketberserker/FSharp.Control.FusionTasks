@@ -17,6 +17,14 @@
     <tags>F# Async Task C# await interop seamless computation Builder extension</tags>
     <dependencies>
       <group targetFramework="net40">
+        <!--
+          CAUTION: F# 4.0 on .NET 4.0 profile is available in FSharp.Core NuGet package,
+            but this assembly version combination NOT officialy microsoft (visual studio) released.
+            So maybe unsupported feature using Task class in F#...
+            For example, I found problem applying package with enabled "AutoGenerateBindingRedirect"
+            but nothing auto generate binding redirect entries.
+            And cause warnings when compiling. (Manually insert entries then fixed warning and works.)
+        -->
         <dependency id="Microsoft.Bcl" version="1.1.10" />
         <dependency id="Microsoft.Bcl.Build" version="1.0.21" />
         <dependency id="Microsoft.Bcl.Async" version="1.0.168" />

@@ -68,6 +68,15 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasks.
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasks.FS4NET4", "FSharp.Control.FusionTasks.FS4NET4\FSharp.Control.FusionTasks.FS4NET4.fsproj", "{181652B8-4155-4A85-997C-93C403CFC966}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FSharp.Control.FusionTasks", "FSharp.Control.FusionTasks", "{604EFC81-AB96-4248-B399-A4F38F26AE2C}"
+	ProjectSection(SolutionItems) = preProject
+		FSharp.Control.FusionTasks\AsyncExtensions.fs = FSharp.Control.FusionTasks\AsyncExtensions.fs
+		FSharp.Control.FusionTasks\Awaiters.fs = FSharp.Control.FusionTasks\Awaiters.fs
+		FSharp.Control.FusionTasks\CommonAssemblyInfo.fs = FSharp.Control.FusionTasks\CommonAssemblyInfo.fs
+		FSharp.Control.FusionTasks\Infrastructures.fs = FSharp.Control.FusionTasks\Infrastructures.fs
+		FSharp.Control.FusionTasks\TaskExtensions.fs = FSharp.Control.FusionTasks\TaskExtensions.fs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
