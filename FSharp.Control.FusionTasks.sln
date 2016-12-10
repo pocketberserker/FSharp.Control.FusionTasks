@@ -3,44 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasks.FS3PCL47", "FSharp.Control.FusionTasks.FS3PCL47\FSharp.Control.FusionTasks.FS3PCL47.fsproj", "{1229F4F2-5501-44FA-B919-347EBA76CB02}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{1B5F5358-3E99-41E1-B951-F9BB13BEAC9B}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
 		.nuget\nuget.exe = .nuget\nuget.exe
 	EndProjectSection
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasksTests.FS3PCL47", "FSharp.Control.FusionTasksTests.FS3PCL47\FSharp.Control.FusionTasksTests.FS3PCL47.fsproj", "{C3406FB4-D9D8-4859-AF6C-FA3BB786CCF9}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSharp.Control.FusionTasksTests.CSharp.FS3PCL47", "FSharp.Control.FusionTasksTests.CSharp.FS3PCL47\FSharp.Control.FusionTasksTests.CSharp.FS3PCL47.csproj", "{41806364-953E-4BDC-ACAE-C719691BFC93}"
-EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasks.FS2NET4", "FSharp.Control.FusionTasks.FS2NET4\FSharp.Control.FusionTasks.FS2NET4.fsproj", "{8FC4FD09-1D3E-4733-B6CB-5D3F04F3A9EF}"
-EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasks.FS3NET4", "FSharp.Control.FusionTasks.FS3NET4\FSharp.Control.FusionTasks.FS3NET4.fsproj", "{78D43A18-2AB2-4D66-B5CB-EE99931F6213}"
-EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasks.FS31NET4", "FSharp.Control.FusionTasks.FS31NET4\FSharp.Control.FusionTasks.FS31NET4.fsproj", "{7A16C023-38F6-4AD1-8B16-C77AD25FAAA9}"
-EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasks.FS4NET45", "FSharp.Control.FusionTasks.FS4NET45\FSharp.Control.FusionTasks.FS4NET45.fsproj", "{FB58B73F-A157-4D63-BC72-7069ABA2B7BC}"
-EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasks.FS31PCL47", "FSharp.Control.FusionTasks.FS31PCL47\FSharp.Control.FusionTasks.FS31PCL47.fsproj", "{EFAE470D-C107-4A38-8A2F-F085C447C4F6}"
-EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasks.FS4PCL47", "FSharp.Control.FusionTasks.FS4PCL47\FSharp.Control.FusionTasks.FS4PCL47.fsproj", "{9AA282CF-5116-4F51-BBF4-91F5DC1E37CC}"
-EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasks.FS31PCL259", "FSharp.Control.FusionTasks.FS31PCL259\FSharp.Control.FusionTasks.FS31PCL259.fsproj", "{8CBA47DD-38CD-4E64-8DBB-A0123F20A91E}"
-EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasks.FS4PCL259", "FSharp.Control.FusionTasks.FS4PCL259\FSharp.Control.FusionTasks.FS4PCL259.fsproj", "{1A94FCF3-2693-4CBF-8814-1818A80FF67F}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BEB599F7-8021-4E01-9200-B9ABF1D9D623}"
 	ProjectSection(SolutionItems) = preProject
 		appveyor.yml = appveyor.yml
 		build-nupkg.bat = build-nupkg.bat
 		CommonAssemblyInfo.fs = CommonAssemblyInfo.fs
-		FSharp.Control.FusionTasks.FS20.nuspec = FSharp.Control.FusionTasks.FS20.nuspec
-		FSharp.Control.FusionTasks.FS30.nuspec = FSharp.Control.FusionTasks.FS30.nuspec
-		FSharp.Control.FusionTasks.FS31.nuspec = FSharp.Control.FusionTasks.FS31.nuspec
-		FSharp.Control.FusionTasks.FS40.netcore.nuspec = FSharp.Control.FusionTasks.FS40.netcore.nuspec
-		FSharp.Control.FusionTasks.FS40.nuspec = FSharp.Control.FusionTasks.FS40.nuspec
 		LICENSE.txt = LICENSE.txt
 		README.md = README.md
 	EndProjectSection
@@ -52,30 +25,84 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{5EA371
 		Images\FSharp.Control.FusionTasks.design = Images\FSharp.Control.FusionTasks.design
 	EndProjectSection
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasks.FS31PCL78", "FSharp.Control.FusionTasks.FS31PCL78\FSharp.Control.FusionTasks.FS31PCL78.fsproj", "{50B12703-AECC-43E4-AF41-560F242DFBEB}"
-EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasks.FS4PCL78", "FSharp.Control.FusionTasks.FS4PCL78\FSharp.Control.FusionTasks.FS4PCL78.fsproj", "{97642C3B-F852-403E-8ABB-328783C7E93D}"
-EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasks.FS31PCL7", "FSharp.Control.FusionTasks.FS31PCL7\FSharp.Control.FusionTasks.FS31PCL7.fsproj", "{CE4B8C88-FE64-42AF-B658-DB7B698DCC3C}"
-EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasks.FS4PCL7", "FSharp.Control.FusionTasks.FS4PCL7\FSharp.Control.FusionTasks.FS4PCL7.fsproj", "{D5D341BD-D05F-4192-99F9-9ED810EB0E25}"
-EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasks.FS2NET45", "FSharp.Control.FusionTasks.FS2NET45\FSharp.Control.FusionTasks.FS2NET45.fsproj", "{CB893780-42C6-4C2D-86EB-11707CFA3193}"
-EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasks.FS3NET45", "FSharp.Control.FusionTasks.FS3NET45\FSharp.Control.FusionTasks.FS3NET45.fsproj", "{8F2155F2-26F5-4D6A-AB40-7C1B9CC0A584}"
-EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasks.FS31NET45", "FSharp.Control.FusionTasks.FS31NET45\FSharp.Control.FusionTasks.FS31NET45.fsproj", "{F8BBE92C-DA06-4648-BF42-D64436C6A9E6}"
-EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasks.FS4NET4", "FSharp.Control.FusionTasks.FS4NET4\FSharp.Control.FusionTasks.FS4NET4.fsproj", "{181652B8-4155-4A85-997C-93C403CFC966}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FSharp.Control.FusionTasks", "FSharp.Control.FusionTasks", "{604EFC81-AB96-4248-B399-A4F38F26AE2C}"
 	ProjectSection(SolutionItems) = preProject
-		FSharp.Control.FusionTasks\AsyncExtensions.fs = FSharp.Control.FusionTasks\AsyncExtensions.fs
-		FSharp.Control.FusionTasks\Awaiters.fs = FSharp.Control.FusionTasks\Awaiters.fs
-		FSharp.Control.FusionTasks\CommonAssemblyInfo.fs = FSharp.Control.FusionTasks\CommonAssemblyInfo.fs
-		FSharp.Control.FusionTasks\Infrastructures.fs = FSharp.Control.FusionTasks\Infrastructures.fs
-		FSharp.Control.FusionTasks\TaskExtensions.fs = FSharp.Control.FusionTasks\TaskExtensions.fs
+		src\FSharp.Control.FusionTasks\AsyncExtensions.fs = src\FSharp.Control.FusionTasks\AsyncExtensions.fs
+		src\FSharp.Control.FusionTasks\Awaiters.fs = src\FSharp.Control.FusionTasks\Awaiters.fs
+		src\FSharp.Control.FusionTasks\CommonAssemblyInfo.fs = src\FSharp.Control.FusionTasks\CommonAssemblyInfo.fs
+		src\FSharp.Control.FusionTasks\Infrastructures.fs = src\FSharp.Control.FusionTasks\Infrastructures.fs
+		src\FSharp.Control.FusionTasks\TaskExtensions.fs = src\FSharp.Control.FusionTasks\TaskExtensions.fs
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FSharp.Control.FusionTasks.Tests", "FSharp.Control.FusionTasks.Tests", "{72D5D64E-B5C0-4538-A895-6AC1DE40B7C6}"
+	ProjectSection(SolutionItems) = preProject
+		tests\FSharp.Control.FusionTasks.Tests\AsyncExtensionsTests.fs = tests\FSharp.Control.FusionTasks.Tests\AsyncExtensionsTests.fs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FSharp.Control.FusionTasks.Tests.CSharp", "FSharp.Control.FusionTasks.Tests.CSharp", "{9DE27964-7A9C-4FD9-8A2C-6B4F9F40D328}"
+	ProjectSection(SolutionItems) = preProject
+		tests\FSharp.Control.FusionTasks.Tests.CSharp\TaskExtensionsTests.cs = tests\FSharp.Control.FusionTasks.Tests.CSharp\TaskExtensionsTests.cs
+	EndProjectSection
+	ProjectSection(FolderStartupServices) = postProject
+		{82A7F48D-3B50-4B1E-B82E-3ADA8210C358} = {82A7F48D-3B50-4B1E-B82E-3ADA8210C358}
+	EndProjectSection
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasks.FS3PCL47", "src\FSharp.Control.FusionTasks.FS3PCL47\FSharp.Control.FusionTasks.FS3PCL47.fsproj", "{1229F4F2-5501-44FA-B919-347EBA76CB02}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasks.FS2NET4", "src\FSharp.Control.FusionTasks.FS2NET4\FSharp.Control.FusionTasks.FS2NET4.fsproj", "{8FC4FD09-1D3E-4733-B6CB-5D3F04F3A9EF}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasks.FS3NET4", "src\FSharp.Control.FusionTasks.FS3NET4\FSharp.Control.FusionTasks.FS3NET4.fsproj", "{78D43A18-2AB2-4D66-B5CB-EE99931F6213}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasks.FS31NET4", "src\FSharp.Control.FusionTasks.FS31NET4\FSharp.Control.FusionTasks.FS31NET4.fsproj", "{7A16C023-38F6-4AD1-8B16-C77AD25FAAA9}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasks.FS4NET45", "src\FSharp.Control.FusionTasks.FS4NET45\FSharp.Control.FusionTasks.FS4NET45.fsproj", "{FB58B73F-A157-4D63-BC72-7069ABA2B7BC}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasks.FS31PCL47", "src\FSharp.Control.FusionTasks.FS31PCL47\FSharp.Control.FusionTasks.FS31PCL47.fsproj", "{EFAE470D-C107-4A38-8A2F-F085C447C4F6}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasks.FS4PCL47", "src\FSharp.Control.FusionTasks.FS4PCL47\FSharp.Control.FusionTasks.FS4PCL47.fsproj", "{9AA282CF-5116-4F51-BBF4-91F5DC1E37CC}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasks.FS31PCL259", "src\FSharp.Control.FusionTasks.FS31PCL259\FSharp.Control.FusionTasks.FS31PCL259.fsproj", "{8CBA47DD-38CD-4E64-8DBB-A0123F20A91E}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasks.FS4PCL259", "src\FSharp.Control.FusionTasks.FS4PCL259\FSharp.Control.FusionTasks.FS4PCL259.fsproj", "{1A94FCF3-2693-4CBF-8814-1818A80FF67F}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasks.FS31PCL78", "src\FSharp.Control.FusionTasks.FS31PCL78\FSharp.Control.FusionTasks.FS31PCL78.fsproj", "{50B12703-AECC-43E4-AF41-560F242DFBEB}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasks.FS4PCL78", "src\FSharp.Control.FusionTasks.FS4PCL78\FSharp.Control.FusionTasks.FS4PCL78.fsproj", "{97642C3B-F852-403E-8ABB-328783C7E93D}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasks.FS31PCL7", "src\FSharp.Control.FusionTasks.FS31PCL7\FSharp.Control.FusionTasks.FS31PCL7.fsproj", "{CE4B8C88-FE64-42AF-B658-DB7B698DCC3C}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasks.FS4PCL7", "src\FSharp.Control.FusionTasks.FS4PCL7\FSharp.Control.FusionTasks.FS4PCL7.fsproj", "{D5D341BD-D05F-4192-99F9-9ED810EB0E25}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasks.FS2NET45", "src\FSharp.Control.FusionTasks.FS2NET45\FSharp.Control.FusionTasks.FS2NET45.fsproj", "{CB893780-42C6-4C2D-86EB-11707CFA3193}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasks.FS3NET45", "src\FSharp.Control.FusionTasks.FS3NET45\FSharp.Control.FusionTasks.FS3NET45.fsproj", "{8F2155F2-26F5-4D6A-AB40-7C1B9CC0A584}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasks.FS31NET45", "src\FSharp.Control.FusionTasks.FS31NET45\FSharp.Control.FusionTasks.FS31NET45.fsproj", "{F8BBE92C-DA06-4648-BF42-D64436C6A9E6}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasks.FS4NET4", "src\FSharp.Control.FusionTasks.FS4NET4\FSharp.Control.FusionTasks.FS4NET4.fsproj", "{181652B8-4155-4A85-997C-93C403CFC966}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasks.Tests.FS4NET45", "tests\FSharp.Control.FusionTasks.Tests.FS4NET45\FSharp.Control.FusionTasks.Tests.FS4NET45.fsproj", "{F8E91A96-CA6A-44DA-B1A8-04B63E4D07D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSharp.Control.FusionTasks.Tests.CSharp.FS4NET45", "tests\FSharp.Control.FusionTasks.Tests.CSharp.FS4NET45\FSharp.Control.FusionTasks.Tests.CSharp.FS4NET45.csproj", "{79758BEF-16BA-4EDE-A173-3B9D1AE94325}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasks.Tests.FS4PCL47", "tests\FSharp.Control.FusionTasks.Tests.FS4PCL47\FSharp.Control.FusionTasks.Tests.FS4PCL47.fsproj", "{C3406FB4-D9D8-4859-AF6C-FA3BB786CCF9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSharp.Control.FusionTasks.Tests.CSharp.FS4PCL47", "tests\FSharp.Control.FusionTasks.Tests.CSharp.FS4PCL47\FSharp.Control.FusionTasks.Tests.CSharp.FS4PCL47.csproj", "{41806364-953E-4BDC-ACAE-C719691BFC93}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{04DC85DD-C2D6-4F22-B28C-3BBB2508EF97}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{9C54998D-636F-437C-AC90-69430C7FB29B}"
+	ProjectSection(SolutionItems) = preProject
+		src\FSharp.Control.FusionTasks.FS20.nuspec = src\FSharp.Control.FusionTasks.FS20.nuspec
+		src\FSharp.Control.FusionTasks.FS30.nuspec = src\FSharp.Control.FusionTasks.FS30.nuspec
+		src\FSharp.Control.FusionTasks.FS31.nuspec = src\FSharp.Control.FusionTasks.FS31.nuspec
+		src\FSharp.Control.FusionTasks.FS40.netcore.nuspec = src\FSharp.Control.FusionTasks.FS40.netcore.nuspec
+		src\FSharp.Control.FusionTasks.FS40.nuspec = src\FSharp.Control.FusionTasks.FS40.nuspec
+	EndProjectSection
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharp.Control.FusionTasks.Tests.FS4NET4", "tests\FSharp.Control.FusionTasks.Tests.FS4NET4\FSharp.Control.FusionTasks.Tests.FS4NET4.fsproj", "{31AFC411-6112-41CA-A674-FCD11172483C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSharp.Control.FusionTasks.Tests.CSharp.FS4NET4", "tests\FSharp.Control.FusionTasks.Tests.CSharp.FS4NET4\FSharp.Control.FusionTasks.Tests.CSharp.FS4NET4.csproj", "{E1F46992-920F-4B67-93F5-1789C9E4B3C0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,14 +114,6 @@ Global
 		{1229F4F2-5501-44FA-B919-347EBA76CB02}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1229F4F2-5501-44FA-B919-347EBA76CB02}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1229F4F2-5501-44FA-B919-347EBA76CB02}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C3406FB4-D9D8-4859-AF6C-FA3BB786CCF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C3406FB4-D9D8-4859-AF6C-FA3BB786CCF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C3406FB4-D9D8-4859-AF6C-FA3BB786CCF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C3406FB4-D9D8-4859-AF6C-FA3BB786CCF9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{41806364-953E-4BDC-ACAE-C719691BFC93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{41806364-953E-4BDC-ACAE-C719691BFC93}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{41806364-953E-4BDC-ACAE-C719691BFC93}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{41806364-953E-4BDC-ACAE-C719691BFC93}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8FC4FD09-1D3E-4733-B6CB-5D3F04F3A9EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8FC4FD09-1D3E-4733-B6CB-5D3F04F3A9EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8FC4FD09-1D3E-4733-B6CB-5D3F04F3A9EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -159,8 +178,61 @@ Global
 		{181652B8-4155-4A85-997C-93C403CFC966}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{181652B8-4155-4A85-997C-93C403CFC966}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{181652B8-4155-4A85-997C-93C403CFC966}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8E91A96-CA6A-44DA-B1A8-04B63E4D07D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8E91A96-CA6A-44DA-B1A8-04B63E4D07D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8E91A96-CA6A-44DA-B1A8-04B63E4D07D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8E91A96-CA6A-44DA-B1A8-04B63E4D07D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79758BEF-16BA-4EDE-A173-3B9D1AE94325}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79758BEF-16BA-4EDE-A173-3B9D1AE94325}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79758BEF-16BA-4EDE-A173-3B9D1AE94325}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79758BEF-16BA-4EDE-A173-3B9D1AE94325}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3406FB4-D9D8-4859-AF6C-FA3BB786CCF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3406FB4-D9D8-4859-AF6C-FA3BB786CCF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3406FB4-D9D8-4859-AF6C-FA3BB786CCF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3406FB4-D9D8-4859-AF6C-FA3BB786CCF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41806364-953E-4BDC-ACAE-C719691BFC93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41806364-953E-4BDC-ACAE-C719691BFC93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41806364-953E-4BDC-ACAE-C719691BFC93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41806364-953E-4BDC-ACAE-C719691BFC93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31AFC411-6112-41CA-A674-FCD11172483C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31AFC411-6112-41CA-A674-FCD11172483C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31AFC411-6112-41CA-A674-FCD11172483C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31AFC411-6112-41CA-A674-FCD11172483C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1F46992-920F-4B67-93F5-1789C9E4B3C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1F46992-920F-4B67-93F5-1789C9E4B3C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1F46992-920F-4B67-93F5-1789C9E4B3C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1F46992-920F-4B67-93F5-1789C9E4B3C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5EA37107-7C53-4291-8EAD-543B392CE2B1} = {BEB599F7-8021-4E01-9200-B9ABF1D9D623}
+		{604EFC81-AB96-4248-B399-A4F38F26AE2C} = {9C54998D-636F-437C-AC90-69430C7FB29B}
+		{72D5D64E-B5C0-4538-A895-6AC1DE40B7C6} = {04DC85DD-C2D6-4F22-B28C-3BBB2508EF97}
+		{9DE27964-7A9C-4FD9-8A2C-6B4F9F40D328} = {04DC85DD-C2D6-4F22-B28C-3BBB2508EF97}
+		{1229F4F2-5501-44FA-B919-347EBA76CB02} = {9C54998D-636F-437C-AC90-69430C7FB29B}
+		{8FC4FD09-1D3E-4733-B6CB-5D3F04F3A9EF} = {9C54998D-636F-437C-AC90-69430C7FB29B}
+		{78D43A18-2AB2-4D66-B5CB-EE99931F6213} = {9C54998D-636F-437C-AC90-69430C7FB29B}
+		{7A16C023-38F6-4AD1-8B16-C77AD25FAAA9} = {9C54998D-636F-437C-AC90-69430C7FB29B}
+		{FB58B73F-A157-4D63-BC72-7069ABA2B7BC} = {9C54998D-636F-437C-AC90-69430C7FB29B}
+		{EFAE470D-C107-4A38-8A2F-F085C447C4F6} = {9C54998D-636F-437C-AC90-69430C7FB29B}
+		{9AA282CF-5116-4F51-BBF4-91F5DC1E37CC} = {9C54998D-636F-437C-AC90-69430C7FB29B}
+		{8CBA47DD-38CD-4E64-8DBB-A0123F20A91E} = {9C54998D-636F-437C-AC90-69430C7FB29B}
+		{1A94FCF3-2693-4CBF-8814-1818A80FF67F} = {9C54998D-636F-437C-AC90-69430C7FB29B}
+		{50B12703-AECC-43E4-AF41-560F242DFBEB} = {9C54998D-636F-437C-AC90-69430C7FB29B}
+		{97642C3B-F852-403E-8ABB-328783C7E93D} = {9C54998D-636F-437C-AC90-69430C7FB29B}
+		{CE4B8C88-FE64-42AF-B658-DB7B698DCC3C} = {9C54998D-636F-437C-AC90-69430C7FB29B}
+		{D5D341BD-D05F-4192-99F9-9ED810EB0E25} = {9C54998D-636F-437C-AC90-69430C7FB29B}
+		{CB893780-42C6-4C2D-86EB-11707CFA3193} = {9C54998D-636F-437C-AC90-69430C7FB29B}
+		{8F2155F2-26F5-4D6A-AB40-7C1B9CC0A584} = {9C54998D-636F-437C-AC90-69430C7FB29B}
+		{F8BBE92C-DA06-4648-BF42-D64436C6A9E6} = {9C54998D-636F-437C-AC90-69430C7FB29B}
+		{181652B8-4155-4A85-997C-93C403CFC966} = {9C54998D-636F-437C-AC90-69430C7FB29B}
+		{F8E91A96-CA6A-44DA-B1A8-04B63E4D07D9} = {04DC85DD-C2D6-4F22-B28C-3BBB2508EF97}
+		{79758BEF-16BA-4EDE-A173-3B9D1AE94325} = {04DC85DD-C2D6-4F22-B28C-3BBB2508EF97}
+		{C3406FB4-D9D8-4859-AF6C-FA3BB786CCF9} = {04DC85DD-C2D6-4F22-B28C-3BBB2508EF97}
+		{41806364-953E-4BDC-ACAE-C719691BFC93} = {04DC85DD-C2D6-4F22-B28C-3BBB2508EF97}
+		{31AFC411-6112-41CA-A674-FCD11172483C} = {04DC85DD-C2D6-4F22-B28C-3BBB2508EF97}
+		{E1F46992-920F-4B67-93F5-1789C9E4B3C0} = {04DC85DD-C2D6-4F22-B28C-3BBB2508EF97}
 	EndGlobalSection
 EndGlobal

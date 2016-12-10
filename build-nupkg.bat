@@ -17,8 +17,8 @@ rem limitations under the License.
 
 set nupkg_version=1.0.13
 
-.nuget\nuget pack FSharp.Control.FusionTasks.FS20.nuspec -Prop Version=%nupkg_version% -Prop Configuration=Release
-.nuget\nuget pack FSharp.Control.FusionTasks.FS30.nuspec -Prop Version=%nupkg_version% -Prop Configuration=Release
-.nuget\nuget pack FSharp.Control.FusionTasks.FS31.nuspec -Prop Version=%nupkg_version% -Prop Configuration=Release
-.nuget\nuget pack FSharp.Control.FusionTasks.FS40.nuspec -Prop Version=%nupkg_version% -Prop Configuration=Release
-.nuget\nuget pack FSharp.Control.FusionTasks.FS40.netcore.nuspec -Prop Version=%nupkg_version% -Prop Configuration=Release
+.nuget\nuget pack src\FSharp.Control.FusionTasks.FS20.nuspec -Prop Version=%nupkg_version% -Prop Configuration=Release
+.nuget\nuget pack src\FSharp.Control.FusionTasks.FS30.nuspec -Prop Version=%nupkg_version% -Prop Configuration=Release
+.nuget\nuget pack src\FSharp.Control.FusionTasks.FS31.nuspec -Prop Version=%nupkg_version% -Prop Configuration=Release
+.nuget\nuget pack src\FSharp.Control.FusionTasks.FS40.nuspec -Prop Version=%nupkg_version% -Prop Configuration=Release
+.nuget\nuget pack src\FSharp.Control.FusionTasks.FS40.netcore.nuspec -Prop Version=%nupkg_version% -Prop Configuration=Release
