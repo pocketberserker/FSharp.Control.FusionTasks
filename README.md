@@ -80,7 +80,7 @@ let asyncTest = async {
   use ms = new MemoryStream()
 
   // FusionTasks directly interpreted System.Threading.Tasks.Task class in F# async-workflow block.
-  // Of course, non-generic Task mapping to Async<unit>.
+  // Sure, non-generic Task mapping to Async<unit>.
   do! ms.WriteAsync(data, 0, data.Length)
   do ms.Position <- 0L
 
@@ -228,7 +228,7 @@ asyncSequenceData.AsTask().Dump()
 
 ## History
 * 1.0.20:
-  * Support ValueTask&lt;T&gt; for F# 4.0 version (Exclude net40 platform, added dependency for System.Threading.Tasks.Extensions).
+  * Support ValueTask&lt;T&gt; (Exclude net40 and Profile 47 platform, added dependency for System.Threading.Tasks.Extensions).
   * Update version for .NET Core F# (1.0.0-alpha-161205).
 * 1.0.13:
   * Reduce to only contains .NET Core's assembly in FS40.netcore package.
