@@ -55,23 +55,7 @@ module AsyncExtensions =
       }
     do computation |> Async.RunSynchronously  // FSUnit not supported Async/Task based tests, so run synchronously here. 
     ms.ToArray() |> should equal data
-  
-  [<Test>]
-  let AsyncBuilderAsAsyncTTest() =
-    let r = Random()
-    let data = Seq.init 100000 (fun i -> 0uy) |> Seq.toArray
-    do r.NextBytes data
-    let computation = async {
-        use ms = new MemoryStream()
-        do ms.Write(data, 0, data.Length)
-        do ms.Position <- 0L
-        let! length = ms.ReadAsync(data, 0, data.Length)
-        do length |> should equal data.Length
-        return ms.ToArray()
-      }
-    let results = computation |> Async.RunSynchronously  // FSUnit not supported Async/Task based tests, so run synchronously here. 
-    results |> should equal data
-  
+
   [<Test>]
   let AsyncBuilderAsAsyncCTATest() =
     let r = Random()
@@ -99,7 +83,7 @@ module AsyncExtensions =
       }
     let results = computation |> Async.RunSynchronously  // FSUnit not supported Async/Task based tests, so run synchronously here. 
     results |> should equal data
-      
+
   [<Test>]
   let AsyncBuilderWithAsyncAndTaskCombinationTest() =
     let asyncGenData() = async {
@@ -115,6 +99,24 @@ module AsyncExtensions =
         do ms.ToArray() |> should equal data
       }
     computation |> Async.RunSynchronously  // FSUnit not supported Async/Task based tests, so run synchronously here. 
+
+#if FS4NET45 || FS4PCL259
+  [<Test>]
+  let AsyncBuilderAsAsyncCVTATTest() =
+    let r = Random()
+    let data = Seq.init 100000 (fun i -> 0uy) |> Seq.toArray
+    do r.NextBytes data
+    let computation = async {
+        use ms = new MemoryStream()
+        do ms.Write(data, 0, data.Length)
+        do ms.Position <- 0L
+        let! length = (new ValueTask<int>(ms.ReadAsync(data, 0, data.Length))).AsyncConfigure(false)
+        do length |> should equal data.Length
+        return ms.ToArray()
+      }
+    let results = computation |> Async.RunSynchronously  // FSUnit not supported Async/Task based tests, so run synchronously here. 
+    results |> should equal data
+#endif
 
   [<Test>]
   let AsyncBuilderCompilesForInTest() =
