@@ -13,7 +13,7 @@
 | Gitter | [![Gitter FusionTasks](https://badges.gitter.im/kekyo/FSharp.Control.FusionTasks.svg)](https://gitter.im/kekyo/FSharp.Control.FusionTasks?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) |
 
 ## What is this?
-* F# Async workflow <--> .NET Task easy seamless interoperability library.
+* F# Async workflow <--> .NET Task/ValueTask easy seamless interoperability library.
 * Sample codes (F# side):
 
 ``` fsharp
@@ -49,13 +49,13 @@ public async Task AsyncTest(FSharpAsync<int> asyncIntComp)
 ```
 
 ## Features
-* Easy interoperability .NET Task <--> F#'s Async.
-* F# async workflow block now support direct .NET Task handle with let!, do! and use!.
+* Easy interoperability .NET Task/ValueTask <--> F#'s Async.
+* F# async workflow block now support direct .NET Task/ValueTask handle with let!, do! and use!.
 * .NET (C# async-await) now support directly F#'s Async.
 * SyncronizationContext capture operation support (F#: AsyncConfigure method / .NET (C#) AsAsyncConfigured method)
 
 ## Benefits
-* Easy interoperability, combination and relation standard .NET OSS packages using Task and F#'s Async.
+* Easy interoperability, combination and relation standard .NET OSS packages using Task/ValueTask and F#'s Async.
 * F# 2.0, 3.0, 3.1 and 4.0 with .NET 4.0/4.5 include PCL Profile 7/47/78/259 and .NET Core 1.0 (.NET Standard 1.6 or higher).
 * Ready to LINQPad 5.
 
@@ -196,6 +196,23 @@ asyncSequenceData.AsTask().Dump()
 
 ![LINQPad 5 driven](https://raw.githubusercontent.com/kekyo/FSharp.Control.FusionTasks/master/Images/linqpad5.png)
 
+## "task-like" and ValueTask appendix
+
+* .NET add new "task-like" type. "task-like" means applied a attribute "System.Runtime.CompilerServices.AsyncMethodBuilderAttribute" and declared the async method builder.
+* ValueTask overview:
+  * New standard "task-like" type named for "ValueTask<T>" for C#. FusionTasks supported ValueTask<T> on 1.0.20.
+  * ValueTask<T> declared by struct (Value type) for goal is improvement performance. But this type has the Task<T> instance inside and finally continuation handle by Task<T>.
+  * ValueTask<T> performance effective situation maybe chatty-call fragments using both caller C# and awaiter C# codes...
+  * ValueTask<T> a little bit or no effect improvement performance, because usage of senario for FusionTasks.
+* "task-like" augumenting is difficult:
+  * The attribute "AsyncMethodBuilderAttribute" must apply TARGET task-like type.
+  * Means if already declared type (ofcource, we have FSharpAsync<'T>) cannot augument and cannot turn to task-like type.
+  * Therefore cannot directly return for FSharpAsync<'T> from C#'s async-await method.
+  * And cannot auto handle task-like type by FusionTasks, because no type safe declaration for task-like type...
+    * For example, if force support task-like type, FusionTasks require augument the Source(taskLike: obj) overload on Async<'T>. This is not type safe.
+* Conclusion:
+  * So FusionTasks support only "ValueTask<T>" type and cannot support any other "task-like" types.
+
 ## Additional resources
 * Source codes available only "FSharp.Control.FusionTasks" folder.
 * The slides: "How to meets Async and Task" in Seattle F# Users group "MVP Summit Special: A Night of Lightning Talks" 2016.11.09 http://www.slideshare.net/kekyo/asyncs-vs-tasks
@@ -210,6 +227,9 @@ asyncSequenceData.AsTask().Dump()
 * Under Apache v2 http://www.apache.org/licenses/LICENSE-2.0
 
 ## History
+* 1.0.20:
+  * Support ValueTask<T> for F# 4.0 version (Exclude net40 platform, added dependency for System.Threading.Tasks.Extensions).
+  * Update version for .NET Core F# (1.0.0-alpha-161205).
 * 1.0.13:
   * Reduce to only contains .NET Core's assembly in FS40.netcore package.
   * Refactor folder structures.
