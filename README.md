@@ -200,18 +200,18 @@ asyncSequenceData.AsTask().Dump()
 
 * .NET add new "task-like" type. "task-like" means applied a attribute "System.Runtime.CompilerServices.AsyncMethodBuilderAttribute" and declared the async method builder.
 * ValueTask overview:
-  * New standard "task-like" type named for "ValueTask<T>" for C#. FusionTasks supported ValueTask<T> on 1.0.20.
-  * ValueTask<T> declared by struct (Value type) for goal is improvement performance. But this type has the Task<T> instance inside and finally continuation handle by Task<T>.
-  * ValueTask<T> performance effective situation maybe chatty-call fragments using both caller C# and awaiter C# codes...
-  * ValueTask<T> a little bit or no effect improvement performance, because usage of senario for FusionTasks.
+  * New standard "task-like" type named for "ValueTask&lt;T&gt;" for C#. FusionTasks supported ValueTask&lt;T&gt; on 1.0.20.
+  * ValueTask&lt;T&gt; declared by struct (Value type) for goal is improvement performance. But this type has the Task&lt;T&gt; instance inside and finally continuation handle by Task&lt;T&gt;.
+  * ValueTask&lt;T&gt; performance effective situation maybe chatty-call fragments using both caller C# and awaiter C# codes...
+  * ValueTask&lt;T&gt; a little bit or no effect improvement performance, because usage of senario for FusionTasks.
 * "task-like" augumenting is difficult:
   * The attribute "AsyncMethodBuilderAttribute" must apply TARGET task-like type.
-  * Means if already declared type (ofcource, we have FSharpAsync<'T>) cannot augument and cannot turn to task-like type.
-  * Therefore cannot directly return for FSharpAsync<'T> from C#'s async-await method.
+  * Means if already declared type (Sure, we have FSharpAsync&lt;'T&gt;) cannot augument and cannot turn to task-like type.
+  * Therefore cannot directly return for FSharpAsync&lt;'T&gt; from C#'s async-await method.
   * And cannot auto handle task-like type by FusionTasks, because no type safe declaration for task-like type...
-    * For example, if force support task-like type, FusionTasks require augument the Source(taskLike: obj) overload on Async<'T>. This is not type safe.
+    * For example, if force support task-like type, FusionTasks require augument "Source: taskLike: obj -> FSharpAsync&lt;'T&gt;" overload on FSharpAsync&lt;'T&gt;. This cannot type safe.
 * Conclusion:
-  * So FusionTasks support only "ValueTask<T>" type and cannot support any other "task-like" types.
+  * So FusionTasks support only "ValueTask&lt;T&gt;" type and cannot support any other "task-like" types.
 
 ## Additional resources
 * Source codes available only "FSharp.Control.FusionTasks" folder.
@@ -228,7 +228,7 @@ asyncSequenceData.AsTask().Dump()
 
 ## History
 * 1.0.20:
-  * Support ValueTask<T> for F# 4.0 version (Exclude net40 platform, added dependency for System.Threading.Tasks.Extensions).
+  * Support ValueTask&lt;T&gt; for F# 4.0 version (Exclude net40 platform, added dependency for System.Threading.Tasks.Extensions).
   * Update version for .NET Core F# (1.0.0-alpha-161205).
 * 1.0.13:
   * Reduce to only contains .NET Core's assembly in FS40.netcore package.
@@ -238,7 +238,7 @@ asyncSequenceData.AsTask().Dump()
 * 1.0.2:
   * Support 'for .. in' expressions. (Thx Armin!)
 * 1.0.1:
-  * Fixed cause undefined Async<'T> using combination Async<'T> and Task/Task<'T> in async workflow. (Thx Honza!)
+  * Fixed cause undefined Async&lt;'T&gt; using combination Async&lt;'T&gt; and Task/Task&lt;T&gt; in async workflow. (Thx Honza!)
 * 1.0.0:
   * RTM release :clap:
   * Add FSharp.Core NuGet references.
